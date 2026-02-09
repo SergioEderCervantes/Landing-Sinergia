@@ -59,7 +59,7 @@ const Card: React.FC<CardProps> = ({
       gsap.to(light, {
         x: 0,
         y: 0,
-        duration: 0.8,
+        duration: 1,
         ease: 'power3.out'
       })
     }
