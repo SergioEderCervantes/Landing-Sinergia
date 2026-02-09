@@ -19,7 +19,7 @@ export function Button({
   className,
   ...props 
 }: ButtonProps) {
-  const baseStyles = 'font-semibold rounded-xl transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-2 transition'
+  const baseStyles = 'font-semibold rounded-xl font-bold transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-2 transition'
   
   const variants = {
     primary: 'bg-white text-black hover:bg-teal',
@@ -28,9 +28,9 @@ export function Button({
   }
   
   const sizes = {
-    sm: 'px-6 py-2 text-sm',
-    md: 'px-8 py-4 text-lg font-bold',
-    lg: 'px-10 py-5 text-xl'
+    sm: 'px-3 py-1 text-sm',
+    md: 'px-6 py-2 text-lg',
+    lg: 'px-8 py-4 text-lg'
   }
   
   const widthClass = fullWidth ? 'w-full' : 'w-full md:w-auto'

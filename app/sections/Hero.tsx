@@ -19,7 +19,7 @@ export default function Hero() {
           </p>
 
           <div className="space-y-4">
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="lg">
               Iniciar Diagnóstico de Viabilidad
             </Button>
             
