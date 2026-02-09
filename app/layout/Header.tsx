@@ -2,7 +2,7 @@ import { Button } from "../components/Button";
 
 const Header = () => {
     return (
-        <header className="flex justify-between items-center px-12 py-4 min-h-[10vh] bg-transparent sticky top-0  w-full">
+        <header className="flex justify-between items-center px-12 py-4 min-h-[10vh] bg-transparent   w-full">
             <div className="w-40 ">
                 <a href="#" className="cursor-pointer">
                     <img src="logos/logotipo_blanco.svg" alt="sinergia logo " className="w-full" />
