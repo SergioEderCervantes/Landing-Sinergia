@@ -2,13 +2,13 @@ import { Button } from "../components/Button";
 
 const Header = () => {
     return (
-        <header className="flex justify-between items-center px-12 py-4 min-h-[10vh] bg-transparent   w-full">
+        <header className="flex flex-col justify-between items-center px-12 py-4 min-h-[10vh] bg-transparent md:flex-row  w-full">
             <div className="w-40 ">
                 <a href="#" className="cursor-pointer">
                     <img src="logos/logotipo_blanco.svg" alt="sinergia logo " className="w-full" />
                 </a>
             </div>
-            <div className="nav border-x-2 group hover:border-shock-pink px-2 transition-colors">
+            <div className="hidden md:block border-x-2 group hover:border-shock-pink px-2 transition-colors">
                 <nav>
                     <a className="text-lg font-bold relative group-hover:text-shock-pink transition-colors" href="#">
                         Casos

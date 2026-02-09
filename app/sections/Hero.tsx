@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="hidden lg:block" />
 
         <div className="col-span-12 lg:col-span-6 px-6 lg:px-0 space-y-8">
-          <h1 className="text-4xl md:text-5xl font-bold ">
+          <h1 className="text-4xl md:text-5xl font-bold  ">
             Consigue un flujo predecible de citas calificadas, sin perseguir leads ni vivir pegado al celular.
           </h1>
 
@@ -18,7 +18,7 @@ export default function Hero() {
             están listos para comprar.
           </p>
 
-          <div className="space-y-4 my-20">
+          <div className="space-y-1 my-20 lg:text-center">
             <Button variant="primary" size="lg">
               Iniciar Diagnóstico de Viabilidad
             </Button>

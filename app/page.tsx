@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Hero from "./sections/Hero";
 import Header from "./layout/Header";
 import Problematica from "./sections/Problematica";
