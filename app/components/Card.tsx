@@ -70,7 +70,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <div
       ref={cardRef}
-      className='relative flex flex-col my-8 size-full max-w- border border-white/10 rounded-xl p-8 overflow-hidden group hover:border-teal transition-colors duration-500'
+      className='relative flex flex-col my-8 size-full max-w- border border-white/10 rounded-xl p-8 overflow-hidden group hover:border-shock-pink transition-colors duration-500'
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
@@ -90,11 +90,11 @@ const Card: React.FC<CardProps> = ({
       <div className="relative z-10">
         <div className="flex text-center min-h-20">
           {icon && (
-            <div className='absolute top-0 left-0 size-20 border border-white/20 rounded-xl bg-black/50 backdrop-blur-sm flex items-center justify-center'>
+            <div className=' group-hover:text-teal size-20 border  border-white/20 rounded-xl bg-black/50 backdrop-blur-sm flex items-center justify-center px-3 mr-2'>
               {icon}
             </div>
           )}
-          <h4 className='text-2xl font-bold w-full'>{title}</h4>
+          <h4 className='text-2xl font-bold w-full text-start'>{title}</h4>
         </div>
 
         <div className="text-gray-400 mt-8 px-4 text-lg group-hover:text-teal transition-colors duration-500">

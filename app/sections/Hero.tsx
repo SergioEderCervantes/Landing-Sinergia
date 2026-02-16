@@ -18,7 +18,7 @@ export default function Hero() {
             están listos para comprar.
           </p>
 
-          <div className="space-y-1 my-20 lg:text-center">
+          <div className="space-y-1 my-20 text-center lg:text-start">
             <Button variant="primary" size="lg">
               Iniciar Diagnóstico de Viabilidad
             </Button>
