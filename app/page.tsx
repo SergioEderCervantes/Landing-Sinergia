@@ -1,6 +1,7 @@
 import Hero from "./sections/Hero";
 import Header from "./layout/Header";
 import Problematica from "./sections/Problematica";
+import SistemaSinergia from "./sections/SistemaSinergia";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <Header />
         <Hero />
         <Problematica/>
+        <SistemaSinergia />
       </main>
     </>
   );
