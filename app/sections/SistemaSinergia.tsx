@@ -36,7 +36,7 @@ Mientras tú trabajas, el sistema sigue vendiendo.`,
 
 const VisualPlaceholder = () => {
   return (
-    <div className="relative w-full aspect-square bg-slate-800/50 rounded-2xl flex items-center justify-center border border-slate-700">
+    <div className="relative w-full  bg-slate-800/50 rounded-2xl flex items-center justify-center border border-slate-700">
       <div className="w-3/5 aspect-square bg-slate-700/50 rounded-xl flex items-center justify-center">
         <svg
           className="w-1/4 h-1/4 text-slate-500"
@@ -60,7 +60,7 @@ const VisualPlaceholder = () => {
 
 const SistemaSinergia = () => {
   return (
-    <section className="bg-gray-900">
+    <section >
       <div className="max-w-6xl mx-auto px-6 py-28">
         <header className="text-center mb-24">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
