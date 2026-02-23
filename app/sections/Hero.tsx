@@ -19,7 +19,7 @@ export default function Hero() {
           </p>
 
           <div className="space-y-1 my-20 text-center lg:text-start">
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" href='/contacto'>
               Iniciar Diagnóstico de Viabilidad
             </Button>
 

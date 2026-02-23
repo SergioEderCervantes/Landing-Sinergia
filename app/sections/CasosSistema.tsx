@@ -46,7 +46,7 @@ const cases = [
 
 const CasosSistema = () => {
   return (
-    <section className="text-white py-20">
+    <section id="casos" className="text-white py-20">
       <div className="grid grid-cols-12 gap-6">
         <div className="hidden lg:block" />
 

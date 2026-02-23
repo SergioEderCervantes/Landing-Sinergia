@@ -40,6 +40,7 @@ const EvaluacionGratuita = () => {
               variant="primary"
               size="lg"
               className="bg-shock-pink text-xl text-white shadow-lg"
+              href="/contacto"
             >
               Agendar evaluación gratuita
             </Button>

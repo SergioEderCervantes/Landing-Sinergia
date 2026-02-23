@@ -1,0 +1,149 @@
+'use client';
+
+import { useState } from 'react';
+import { Button } from './Button';
+import { cn } from '../lib/utils';
+
+type FormStep = {
+  id: string;
+  label: string;
+  placeholder: string;
+  type: string;
+};
+
+const steps: FormStep[] = [
+  { id: 'name', label: '¿Cómo te llamas?', placeholder: 'Tu nombre completo', type: 'text' },
+  { id: 'email', label: '¿A qué correo te escribimos?', placeholder: 'tu@email.com', type: 'email' },
+  { id: 'company', label: '¿Cómo se llama tu marca o negocio?', placeholder: 'Nombre de tu negocio', type: 'text' },
+  { id: 'brand_story', label: 'Cuéntanos un poco sobre tu marca', placeholder: '¿Qué haces y qué buscas lograr?', type: 'textarea' },
+  { id: 'website', label: '¿Tienes website o redes sociales?', placeholder: 'url o @usuario', type: 'text' },
+  { id: 'source', label: '¿Cómo nos encontraste?', placeholder: 'Selecciona una opción', type: 'select' },
+];
+
+export default function ContactForm() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState<Record<string, string>>({});
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [steps[currentStep].id]: e.target.value });
+  };
+
+  const handleNext = () => {
+    // Validación básica para el select
+    if (steps[currentStep].type === 'select' && !formData[steps[currentStep].id]) {
+      return;
+    }
+
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      console.log('Form Submitted:', formData);
+      alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const isLastStep = currentStep === steps.length - 1;
+  const currentField = steps[currentStep];
+
+  return (
+    <div className="flex flex-col items-center justify-center w-full min-h-[60vh]">
+      <div className="w-full space-y-8">
+        {/* Step Indicator */}
+        <div className="flex justify-center gap-2 mb-12">
+          {steps.map((_, idx) => (
+            <div
+              key={idx}
+              className={cn(
+                "h-1 w-8 rounded-full transition-colors",
+                idx <= currentStep ? "bg-shock-pink" : "bg-white/20"
+              )}
+            />
+          ))}
+        </div>
+
+        {/* Form Input Area */}
+        <div className="flex flex-col items-center space-y-6">
+          <label className="text-3xl md:text-5xl font-bold text-center text-white tracking-tight">
+            {currentField.label}
+          </label>
+
+          <div className="w-full max-w-xl">
+            {currentField.type === 'textarea' ? (
+              <textarea
+                autoFocus
+                className="w-full bg-transparent border-b-2 border-white/30 py-4 text-2xl md:text-3xl text-center focus:outline-none focus:border-shock-pink transition-colors placeholder:text-white/10 resize-none h-32"
+                placeholder={currentField.placeholder}
+                value={formData[currentField.id] || ''}
+                onChange={handleInputChange}
+              />
+            ) : currentField.type === 'select' ? (
+              <select
+                className="w-full bg-transparent border-b-2 border-white/30 py-4 text-2xl md:text-3xl text-center focus:outline-none focus:border-shock-pink transition-colors appearance-none cursor-pointer text-white"
+                value={formData[currentField.id] || ''}
+                onChange={handleInputChange}
+              >
+                <option value="" disabled className="bg-gunmetal">{currentField.placeholder}</option>
+                <option value="anuncios" className="bg-gunmetal text-lg">Anuncios</option>
+                <option value="recomendados" className="bg-gunmetal text-lg">Recomendados</option>
+                <option value="otros" className="bg-gunmetal text-lg">Otros</option>
+              </select>
+            ) : (
+              <input
+                autoFocus
+                type={currentField.type}
+                className="w-full bg-transparent border-b-2 border-white/30 py-4 text-2xl md:text-3xl text-center focus:outline-none focus:border-shock-pink transition-colors placeholder:text-white/10"
+                placeholder={currentField.placeholder}
+                value={formData[currentField.id] || ''}
+                onChange={handleInputChange}
+                onKeyDown={(e) => e.key === 'Enter' && handleNext()}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-12">
+          {currentStep === 0 ? (
+            <Button
+              variant="outline"
+              href="/"
+              className="border-white/20 text-white/60 hover:text-white hover:border-white w-full md:w-40 hover:bg-transparent"
+            >
+              Regresar
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              onClick={handleBack}
+              className="border-white/20 text-white/60 hover:text-white hover:border-white w-full md:w-40  hover:bg-transparent"
+            >
+              Atrás
+            </Button>
+          )}
+          <Button
+            variant="primary"
+            onClick={handleNext}
+            className={cn(
+              "w-full md:w-40",
+              isLastStep ? "bg-shock-pink text-white border-shock-pink" : "bg-white text-black"
+            )}
+            disabled={!formData[currentField.id]}
+          >
+            {isLastStep ? 'Enviar' : 'Siguiente'}
+          </Button>
+        </div>
+
+        {/* Step Counter */}
+        <p className="text-center text-white/40 text-sm mt-8">
+          Paso {currentStep + 1} de {steps.length}
+        </p>
+      </div>
+    </div>
+  );
+}

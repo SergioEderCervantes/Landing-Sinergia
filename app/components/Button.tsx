@@ -1,15 +1,20 @@
 // components/ui/Button.tsx
 
 
-import { ButtonHTMLAttributes, ReactNode } from 'react'
-import { cn } from '../lib/utils' // si usas shadcn, sino define cn más abajo
+import { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'react'
+import Link from 'next/link'
+import { cn } from '../lib/utils'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseProps = {
   children: ReactNode
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
 }
+
+// Unión de tipos para soportar tanto atributos de botón como de enlace
+type ButtonProps = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: never }
+type AnchorProps = BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
 
 export function Button({ 
   children, 
@@ -18,8 +23,8 @@ export function Button({
   fullWidth = false,
   className,
   ...props 
-}: ButtonProps) {
-  const baseStyles = 'font-semibold rounded-xl font-bold transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-2 transition'
+}: ButtonProps | AnchorProps) {
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl font-bold transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-1 active:translate-y-0 text-center'
   
   const variants = {
     primary: 'bg-white text-black hover:bg-teal',
@@ -35,16 +40,32 @@ export function Button({
   
   const widthClass = fullWidth ? 'w-full' : 'w-full md:w-auto'
   
+  const combinedClassName = cn(
+    baseStyles,
+    variants[variant],
+    sizes[size],
+    widthClass,
+    className
+  )
+
+  // Si tiene href, es un Link (Componente de servidor amigable)
+  if ('href' in props && props.href) {
+    return (
+      <Link 
+        className={combinedClassName}
+        {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        href={props.href}
+      >
+        {children}
+      </Link>
+    )
+  }
+
+  // De lo contrario, es un botón estándar
   return (
     <button 
-      className={cn(
-        baseStyles,
-        variants[variant],
-        sizes[size],
-        widthClass,
-        className
-      )}
-      {...props}
+      className={combinedClassName}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
     >
       {children}
     </button>
