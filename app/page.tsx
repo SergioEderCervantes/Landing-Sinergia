@@ -6,15 +6,17 @@ import CasosSistema from "./sections/CasosSistema";
 import StatusAndQualification from "./sections/StatusAndQualification";
 import QueIncluye from "./sections/QueIncluye";
 import EvaluacionGratuita from "./sections/EvaluacionGratuita";
+import ProcessSteps from "./sections/SistemaSinergiav2";
 
 export default function Home() {
   return (
     <>
-      <main className="font-[inter] bg-linear-to-b from-white dark:from-black from-20% to-background  text-foreground">
+      <main className="font-[inter] bg-linear-to-b from-white dark:from-black from-10% to-background  text-foreground">
         <Header />
         <Hero />
         <Problematica/>
-        <SistemaSinergia />
+        {/* <SistemaSinergia /> */}
+        <ProcessSteps/>
         <CasosSistema />
         <StatusAndQualification />
         <QueIncluye />

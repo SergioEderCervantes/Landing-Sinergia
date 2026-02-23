@@ -1,5 +1,5 @@
 // components/HeroLogo.tsx
-'use client'
+// 'use client'
 
 export function HeroLogo() {
     //   return (
