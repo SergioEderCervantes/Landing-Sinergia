@@ -1,7 +1,8 @@
 // components/Card.tsx
 'use client'
 import React, { useRef, useEffect, useState, ReactNode } from 'react'
-import gsap from 'gsap'
+// import gsap from 'gsap'
+import { gsap, ensureGsap } from '../lib/gsapClient'
 
 
 interface CardProps {
@@ -22,7 +23,8 @@ const Card: React.FC<CardProps> = ({
 
   // Inicializar posición al montar
   useEffect(() => {
-    if (!lightRef.current) return
+    if (!lightRef.current) return;
+    ensureGsap();
 
     // Setear posición inicial con GSAP (no con CSS)
     gsap.set(lightRef.current, {
@@ -33,6 +35,7 @@ const Card: React.FC<CardProps> = ({
 
   useEffect(() => {
     if (!cardRef.current || !lightRef.current) return
+    ensureGsap();
 
     const card = cardRef.current
     const light = lightRef.current
