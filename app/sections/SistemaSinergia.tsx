@@ -60,43 +60,49 @@ const VisualPlaceholder = () => {
 
 const SistemaSinergia = () => {
   return (
-    <section >
-      <div className="max-w-6xl mx-auto px-6 py-28">
-        <header className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            El Sistema Sinergia
-          </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-            No hacemos marketing suelto. Construimos un sistema de ventas completo.
-          </p>
-        </header>
+    <section className="py-20">
+      <div className="grid grid-cols-12 gap-6">
+        <div className="hidden lg:block" />
+        
+        <div className="col-span-12 lg:col-span-10 px-6 lg:px-0">
+          <header className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+              El Sistema Sinergia
+            </h2>
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+              No hacemos marketing suelto. Construimos un sistema de ventas completo.
+            </p>
+          </header>
 
-        <div className="space-y-24">
-          {stepsData.map((step, index) => (
-            <div
-              key={step.number}
-              className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
-            >
-              <div className={index % 2 !== 0 ? 'md:order-last' : ''}>
-                <div className="relative">
-                  <p className="absolute -top-10 -left-4 sm:-left-8 text-8xl md:text-9xl font-black text-white/5 select-none -z-10">
-                    {step.number}
-                  </p>
-                  <h3 className="text-3xl font-bold text-white mb-6">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 whitespace-pre-line leading-relaxed">
-                    {step.body}
-                  </p>
+          <div className="space-y-12">
+            {stepsData.map((step, index) => (
+              <div
+                key={step.number}
+                className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center"
+              >
+                <div className={index % 2 !== 0 ? 'md:order-last' : ''}>
+                  <div className="relative">
+                    <p className="absolute -top-10 -left-4 sm:-left-8 text-8xl md:text-9xl font-black text-white/5 select-none -z-10">
+                      {step.number}
+                    </p>
+                    <h3 className="text-3xl font-bold text-white mb-6">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 whitespace-pre-line leading-relaxed">
+                      {step.body}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <VisualPlaceholder />
                 </div>
               </div>
-
-              <div className="flex items-center justify-center">
-                <VisualPlaceholder />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        <div className="hidden lg:block" />
       </div>
     </section>
   );

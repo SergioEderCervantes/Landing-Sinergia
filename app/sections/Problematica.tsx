@@ -12,7 +12,7 @@ const Problematica = () => {
         {/* Columns 2-11: Content */}
         <div className="col-span-12 lg:col-span-10 px-6 lg:px-0 space-y-12">
           {/* Title */}
-          <div className="text-4xl md:text-5xl text-center font-bold text-lavender-web ">
+          <div className="text-3xl md:text-4xl text-center font-bold text-lavender-web tracking-tight">
             <h2>
               El problema no es tu producto... <br /> <span className="text-shock-pink">es tu sistema</span>
             </h2>

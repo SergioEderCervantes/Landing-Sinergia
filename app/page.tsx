@@ -3,10 +3,9 @@ import Header from "./layout/Header";
 import Problematica from "./sections/Problematica";
 import SistemaSinergia from "./sections/SistemaSinergia";
 import CasosSistema from "./sections/CasosSistema";
-import AntesDespuesSection from "./sections/AntesDespuesSection";
-import ParaQuienSection from "./sections/ParaQuienSection";
-import QueIncluyeSection from "./sections/QueIncluyeSection";
-import EvaluacionGratuitaSection from "./sections/EvaluacionGratuitaSection";
+import StatusAndQualification from "./sections/StatusAndQualification";
+import QueIncluye from "./sections/QueIncluye";
+import EvaluacionGratuita from "./sections/EvaluacionGratuita";
 
 export default function Home() {
   return (
@@ -17,10 +16,9 @@ export default function Home() {
         <Problematica/>
         <SistemaSinergia />
         <CasosSistema />
-        <AntesDespuesSection />
-        <ParaQuienSection />
-        <QueIncluyeSection />
-        <EvaluacionGratuitaSection />
+        <StatusAndQualification />
+        <QueIncluye />
+        <EvaluacionGratuita />
       </main>
     </>
   );

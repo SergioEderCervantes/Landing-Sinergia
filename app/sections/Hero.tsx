@@ -8,11 +8,11 @@ export default function Hero() {
         <div className="hidden lg:block" />
 
         <div className="col-span-12 lg:col-span-6 px-6 lg:px-0 space-y-8">
-          <h1 className="text-4xl md:text-5xl font-bold  ">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
             Consigue un flujo predecible de citas calificadas, sin perseguir leads ni vivir pegado al celular.
           </h1>
 
-          <p className="text-lg md:text-xl  leading-relaxed">
+          <p className="text-lg md:text-xl leading-relaxed text-gray-400">
             Instalamos un sistema de ventas que atrae a tu cliente ideal,
             filtra a los curiosos y agenda automáticamente solo a quienes
             están listos para comprar.
