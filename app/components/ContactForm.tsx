@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from './Button';
 import { cn } from '../lib/utils';
+import { ensureGsap, gsap, useGSAP } from '../lib/gsapClient';
 
 type FormStep = {
   id: string;
@@ -17,25 +18,81 @@ const steps: FormStep[] = [
   { id: 'company', label: '¿Cómo se llama tu marca o negocio?', placeholder: 'Nombre de tu negocio', type: 'text' },
   { id: 'brand_story', label: 'Cuéntanos un poco sobre tu marca', placeholder: '¿Qué haces y qué buscas lograr?', type: 'textarea' },
   { id: 'website', label: '¿Tienes website o redes sociales?', placeholder: 'url o @usuario', type: 'text' },
+  { id: 'budget', label: '¿Con cuanto presupuesto cuentas para este proyecto?', placeholder: '$10000 MXN', type: 'text' },
   { id: 'source', label: '¿Cómo nos encontraste?', placeholder: 'Selecciona una opción', type: 'select' },
 ];
 
 export default function ContactForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, string>>({});
+  const containerRef = useRef(null);
+  const contentRef = useRef(null);
+  const directionRef = useRef(1); // 1 for next, -1 for back
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  ensureGsap();
+  
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  const animateTransition = contextSafe((nextStep: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+
+    const direction = nextStep > currentStep ? 1 : -1;
+    directionRef.current = direction;
+
+    const exitY = direction === 1 ? -100 : 100;
+
+    gsap.to(contentRef.current, {
+      y: exitY,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        setCurrentStep(nextStep);
+      }
+    });
+  });
+
+  // Entry animation triggered when currentStep changes
+  useGSAP(() => {
+    if (!contentRef.current) return;
+    
+    const direction = directionRef.current;
+    const entryY = direction === 1 ? 100 : -100;
+    
+    // First load special case
+    const isFirstLoad = !isAnimating && currentStep === 0;
+
+    gsap.fromTo(contentRef.current, 
+      { 
+        y: isFirstLoad ? 100 : entryY, 
+        opacity: 0 
+      },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.5, 
+        ease: "power2.out",
+        delay: isFirstLoad ? 0.3 : 0,
+        onComplete: () => setIsAnimating(false)
+      }
+    );
+  }, { dependencies: [currentStep], scope: containerRef });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [steps[currentStep].id]: e.target.value });
   };
 
   const handleNext = () => {
-    // Validación básica para el select
+    if (isAnimating) return;
+    
     if (steps[currentStep].type === 'select' && !formData[steps[currentStep].id]) {
       return;
     }
 
     if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
+      animateTransition(currentStep + 1);
     } else {
       console.log('Form Submitted:', formData);
       alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
@@ -43,17 +100,16 @@ export default function ContactForm() {
   };
 
   const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
+    if (isAnimating || currentStep === 0) return;
+    animateTransition(currentStep - 1);
   };
 
   const isLastStep = currentStep === steps.length - 1;
   const currentField = steps[currentStep];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full min-h-[60vh]">
-      <div className="w-full space-y-8">
+    <div ref={containerRef} className="flex flex-col items-center justify-center w-full min-h-[60vh] overflow-hidden">
+      <div ref={contentRef} className="w-full space-y-8">
         {/* Step Indicator */}
         <div className="flex justify-center gap-2 mb-12">
           {steps.map((_, idx) => (
