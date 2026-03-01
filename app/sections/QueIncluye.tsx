@@ -2,10 +2,9 @@ import InclusionItem from "../components/InclusionItem";
 
 const QueIncluye = () => {
   const includes = [
-    "Estrategia y configuración de Google Ads.",
-    "Estrategia y configuración de Facebook Ads.",
+    "Estrategia y configuración de Ads.",
     "Página optimizada para conversión.",
-    "Automatización por WhatsApp.",
+    "Automatización de contactos por WhatsApp.",
     "Medición y optimización constante.",
   ];
 

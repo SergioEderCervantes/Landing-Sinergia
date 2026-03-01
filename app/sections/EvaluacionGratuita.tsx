@@ -25,17 +25,6 @@ const EvaluacionGratuita = () => {
               </span>
             </p>
 
-            <p className="mb-3 text-lg font-semibold text-gray-300">Revisamos:</p>
-            <ul className="mb-12 space-y-1 text-lg text-gray-400">
-              {reviewItems.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-
-            <p className="mb-12 text-xl font-bold text-teal">
-              Si vemos que no podemos ayudarte, te lo decimos directo.
-            </p>
-
             <Button
               variant="primary"
               size="lg"
@@ -46,7 +35,7 @@ const EvaluacionGratuita = () => {
             </Button>
 
             <p className="mt-6 text-sm text-gray-500">
-              Sin compromiso. Solo claridad.
+              Si vemos que no podemos ayudarte, te lo decimos directo.
             </p>
           </div>
         </div>
