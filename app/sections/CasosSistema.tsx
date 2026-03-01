@@ -1,48 +1,5 @@
 import CaseStudyCard from "../components/CaseStudyCard";
-
-const cases = [
-  {
-    number: "01",
-    title: "Caso 01 — Empresa de servicios locales",
-    antes: [
-      "Dependía de recomendaciones.",
-      "Ventas variables.",
-      "Sin seguimiento estructurado.",
-    ],
-    intervencion: [
-      "Google Ads + Meta Ads.",
-      "Página optimizada para citas.",
-      "Automatización por WhatsApp.",
-    ],
-    resultado: {
-      metrics: ["+48% en citas agendadas."],
-      description: [
-        "Flujo constante de prospectos.",
-        "Proceso comercial medible.",
-      ],
-    },
-  },
-  {
-    number: "02",
-    title: "Caso 02 — Negocio especializado",
-    antes: [
-      "Prospectos preguntaban precio y desaparecían.",
-      "Mucho tráfico, poca conversión.",
-    ],
-    intervencion: [
-      "Reestructuración de atracción.",
-      "Página clara y directa.",
-      "Seguimiento automático.",
-    ],
-    resultado: {
-      metrics: ["+37% en cotizaciones calificadas."],
-      description: [
-        "Mejora en calidad de leads.",
-        "Ventas más previsibles.",
-      ],
-    },
-  },
-];
+import { CASOS } from "../model/EXITO";
 
 const CasosSistema = () => {
   return (
@@ -63,7 +20,7 @@ const CasosSistema = () => {
           </header>
 
           <div className="space-y-24">
-            {cases.map((caseItem, index) => (
+            {CASOS.map((caseItem, index) => (
               <CaseStudyCard key={index} caseItem={caseItem} />
             ))}
           </div>
