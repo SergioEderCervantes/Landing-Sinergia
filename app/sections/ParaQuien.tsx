@@ -38,10 +38,10 @@ const ParaQuien = () => {
               <Button
                 variant="primary"
                 size="lg"
-                className="bg-shock-pink text-xl text-white shadow-lg"
+                className="hover:bg-teal "
                 href="/contacto"
               >
-                Quiero el sistema →
+                Quiero el sistema 
               </Button>
               <p className="text-sm text-gray-500">
                 Sin compromiso. Si no podemos ayudarte, te lo decimos directo.

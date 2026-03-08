@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "../components/Button";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Particle {
@@ -11,10 +12,10 @@ interface Particle {
 // ─── HeroLogo ─────────────────────────────────────────────────────────────────
 function HeroLogo() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
+    <div className="hidden md:flex relative w-full h-full  items-center justify-center">
       <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-teal-500/10 blur-3xl animate-pulse pointer-events-none" />
       <svg
-        className="w-[min(280px,80%)] md:w-[min(360px,90%)] h-auto drop-shadow-2xl animate-[float_7s_ease-in-out_infinite]"
+        className="w-[min(280px,80%)] md:w-[min(400px,90%)] h-auto drop-shadow-2xl blur-md animate-[float_7s_ease-in-out_infinite]"
         viewBox="0 0 423 375"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -105,18 +106,6 @@ export default function Hero() {
           0%, 100% { transform: translateY(0) rotate(0deg); }
           50%       { transform: translateY(6px) rotate(0.8deg); }
         }
-        @keyframes shimmer {
-          0%   { left: -80%; }
-          100% { left: 120%; }
-        }
-        .btn-cta::after {
-          content: '';
-          position: absolute;
-          inset-block: 0; left: -80%;
-          width: 55%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-          animation: shimmer 3.2s ease-in-out infinite 2s;
-        }
       `}</style>
 
       <div className="relative min-h-screen bg-[#0a0a0a] overflow-hidden font-sans">
@@ -127,21 +116,18 @@ export default function Hero() {
 
         {/* ── HEADER ── */}
         <header
-          className={`relative z-20 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 ${fade(0)}`}
+          className={`relative z-20 flex flex-col md:flex-row items-center justify-between px-6 py-4 md:px-12 md:py-5 ${fade(0)}`}
           style={{ transitionDelay: "0ms" }}
         >
-          <a href="/" className="block w-32 md:w-40 shrink-0">
+          <a href="/" className="block w-40 shrink-0">
             <img src="/logos/logotipo_blanco.svg" alt="Sinergia" className="w-full" />
           </a>
 
           <div className="flex-1" />
 
-          <a
-            href="/contacto"
-            className="bg-white text-black text-xs md:text-sm font-bold px-4 md:px-5 py-2 rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-200"
-          >
-            Evalúa mi negocio
-          </a>
+          <Button href="/contacto">
+            Evalua mi negocio
+          </Button>
         </header>
 
         {/* ── HERO ── */}
@@ -150,7 +136,7 @@ export default function Hero() {
           {/* LEFT */}
           <div className="flex flex-col gap-2 md:gap-3 text-center md:text-left items-center md:items-start">
 
-      
+
 
             {/* Headline */}
             <h1
@@ -179,38 +165,15 @@ export default function Hero() {
               className={`flex flex-col gap-1.5 items-center md:items-start ${fade(460)}`}
               style={{ transitionDelay: "460ms" }}
             >
-              <a
-                href="/contacto"
-                className="btn-cta relative overflow-hidden bg-white text-black font-bold text-sm md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-lg hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-[0_8px_30px_rgba(20,184,166,0.22)] active:scale-[0.985] transition-all duration-200"
-              >
+              <Button href="/contacto">
                 Iniciar Diagnóstico de Viabilidad
-              </a>
+              </Button>
               <span className="text-teal-400 text-sm font-medium">
                 Solo toma 45 segundos
               </span>
             </div>
 
             {/* Social proof */}
-            <div
-              className={`flex items-center gap-3 ${fade(580)}`}
-              style={{ transitionDelay: "580ms" }}
-            >
-              <div className="flex">
-                {[0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="w-7 h-7 rounded-full border-2 border-[#0a0a0a]"
-                    style={{
-                      background: `hsl(${158 + i * 28}, 38%, ${38 + i * 9}%)`,
-                      marginLeft: i > 0 ? "-7px" : "0",
-                    }}
-                  />
-                ))}
-              </div>
-              <span className="text-white/40 text-sm">
-                +127 negocios ya tienen su sistema activo
-              </span>
-            </div>
           </div>
 
           {/* RIGHT — hidden on mobile, shown on md+ */}
