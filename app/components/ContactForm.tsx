@@ -87,10 +87,30 @@ export default function ContactForm() {
     setFormData({ ...formData, [steps[currentStep].id]: e.target.value });
   };
 
+  const validateStep = (stepIndex: number) => {
+    const step = steps[stepIndex];
+    const value = formData[step.id] || '';
+    
+    // Optional fields
+    if (['brand_story', 'website', 'budget'].includes(step.id)) return true;
+    
+    // Mandatory fields check
+    if (!value.trim()) return false;
+    
+    // Email validation
+    if (step.id === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(value);
+    }
+    
+    return true;
+  };
+
   const handleNext = async () => {
     if (isAnimating || isSubmitting) return;
 
-    if (steps[currentStep].type === 'select' && !formData[steps[currentStep].id]) {
+    if (!validateStep(currentStep)) {
+      // Optional: Add a shake animation or error message here
       return;
     }
 
@@ -113,6 +133,7 @@ export default function ContactForm() {
 
   const isLastStep = currentStep === steps.length - 1;
   const currentField = steps[currentStep];
+  const isValid = validateStep(currentStep);
 
   if (status === 'success') {
     return (
@@ -156,6 +177,12 @@ export default function ContactForm() {
                 placeholder={currentField.placeholder}
                 value={formData[currentField.id] || ''}
                 onChange={handleInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    handleNext();
+                  }
+                }}
                 disabled={isSubmitting}
               />
             ) : currentField.type === 'select' ? (
@@ -163,6 +190,7 @@ export default function ContactForm() {
                 className="w-full bg-transparent border-b-2 border-white/30 py-4 text-2xl md:text-3xl text-center focus:outline-none focus:border-shock-pink transition-colors appearance-none cursor-pointer text-white"
                 value={formData[currentField.id] || ''}
                 onChange={handleInputChange}
+                onKeyDown={(e) => e.key === 'Enter' && handleNext()}
                 disabled={isSubmitting}
               >
                 <option value="" disabled className="bg-gunmetal">{currentField.placeholder}</option>
@@ -212,7 +240,7 @@ export default function ContactForm() {
               "w-full md:w-40",
               isLastStep ? "bg-shock-pink text-white border-shock-pink" : "bg-white text-black"
             )}
-            disabled={!formData[currentField.id] || isSubmitting}
+            disabled={!isValid || isSubmitting}
           >
             {isSubmitting ? 'Enviando...' : (isLastStep ? 'Enviar' : 'Siguiente')}
           </Button>

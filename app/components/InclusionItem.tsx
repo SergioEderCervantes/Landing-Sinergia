@@ -4,8 +4,9 @@ interface InclusionItemProps {
   
   const InclusionItem: React.FC<InclusionItemProps> = ({ item }) => {
     return (
-      <div className="relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-shock-pink before:content-['']">
-        <p className="text-xl font-medium text-white">{item}</p>
+      <div className="relative pl-6">
+        <div className="qi-bar absolute left-0 top-0 h-full w-1 bg-shock-pink origin-top" />
+        <p className="qi-text text-xl font-medium text-white">{item}</p>
       </div>
     );
   };

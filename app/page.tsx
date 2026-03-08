@@ -1,12 +1,13 @@
 import Hero from "./sections/Hero";
 import Header from "./layout/Header";
 import Problematica from "./sections/Problematica";
-import SistemaSinergia from "./sections/SistemaSinergia";
 import CasosSistema from "./sections/CasosSistema";
-import StatusAndQualification from "./sections/StatusAndQualification";
+import LoQueCambia from "./sections/LoQueCambia";
+import ParaQuien from "./sections/ParaQuien";
 import QueIncluye from "./sections/QueIncluye";
 import EvaluacionGratuita from "./sections/EvaluacionGratuita";
-import ProcessSteps from "./sections/SistemaSinergiav2";
+import ProcessSteps from "./sections/SistemaSinergia";
+
 
 export default function Home() {
   return (
@@ -15,10 +16,10 @@ export default function Home() {
         
         <Hero />
         <Problematica/>
-        {/* <SistemaSinergia /> */}
         <ProcessSteps/>
         <CasosSistema />
-        <StatusAndQualification />
+        <LoQueCambia />
+        <ParaQuien />
         <QueIncluye />
         <EvaluacionGratuita />
       </main>
