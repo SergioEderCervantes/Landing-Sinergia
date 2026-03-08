@@ -3,8 +3,13 @@
 import { useRef } from "react";
 import { ensureGsap, gsap, useGSAP } from "../lib/gsapClient";
 import InclusionItem from "../components/InclusionItem";
+import { QueIncluyeContent } from "../content/types";
 
-const QueIncluye = () => {
+interface QueIncluyeProps {
+  content: QueIncluyeContent
+}
+
+const QueIncluye = ({ content }: QueIncluyeProps) => {
   const sectionRef = useRef<HTMLElement>(null);
   ensureGsap();
 
@@ -21,12 +26,7 @@ const QueIncluye = () => {
       .from(".qi-text", { x: -16, opacity: 0, duration: 0.4, stagger: 0.18, ease: "power2.out" }, "<0.2");
   }, { scope: sectionRef });
 
-  const includes = [
-    "Estrategia y configuración de Ads.",
-    "Página optimizada para conversión.",
-    "Automatización de contactos por WhatsApp.",
-    "Medición y optimización constante.",
-  ];
+  const subtitleLines = content.subtitle.split('\n')
 
   return (
     <section ref={sectionRef} className="text-white py-20">
@@ -36,17 +36,16 @@ const QueIncluye = () => {
         <div className="col-span-12 lg:col-span-10 px-6 lg:px-0">
           <header className="qi-header mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
-              Qué incluye el Sistema Sinergia
+              {content.title}
             </h2>
             <p className="text-lg text-gray-400 md:text-xl">
-              Todo bajo una misma estrategia.
-              <br />
-              Nada suelto.
+              {subtitleLines[0]}
+              {subtitleLines[1] && <><br />{subtitleLines[1]}</>}
             </p>
           </header>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
-            {includes.map((item, index) => (
+            {content.items.map((item, index) => (
               <InclusionItem key={index} item={item} />
             ))}
           </div>

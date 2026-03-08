@@ -1,12 +1,11 @@
 import { Button } from "../components/Button";
+import { ParaQuienContent } from "../content/types";
 
-const paraItems = [
-  "Ya vendes pero quieres escalar.",
-  "Quieres dejar de improvisar.",
-  "Estás listo para invertir en crecimiento serio.",
-];
+interface ParaQuienProps {
+  content: ParaQuienContent
+}
 
-const ParaQuien = () => {
+const ParaQuien = ({ content }: ParaQuienProps) => {
   return (
     <section className="text-white py-20">
       <div className="grid grid-cols-12 gap-6">
@@ -16,15 +15,15 @@ const ParaQuien = () => {
           <div className="w-full max-w-2xl bg-white/5 border border-teal/20 rounded-3xl p-10 md:p-14 flex flex-col items-center text-center gap-10">
             <div className="space-y-3">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500">
-                ¿Para quién es esto?
+                {content.label}
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Esto es para ti si…
+                {content.title}
               </h2>
             </div>
 
             <ul className="w-full space-y-4 text-left">
-              {paraItems.map((item, i) => (
+              {content.items.map((item, i) => (
                 <li key={i} className="flex items-start gap-4">
                   <span className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-teal/15 border border-teal/30 flex items-center justify-center text-teal text-sm font-bold">
                     ✓
@@ -39,12 +38,12 @@ const ParaQuien = () => {
                 variant="primary"
                 size="lg"
                 className="hover:bg-teal "
-                href="/contacto"
+                href={content.ctaHref}
               >
-                Quiero el sistema 
+                {content.ctaText}
               </Button>
               <p className="text-sm text-gray-500">
-                Sin compromiso. Si no podemos ayudarte, te lo decimos directo.
+                {content.ctaNote}
               </p>
             </div>
           </div>

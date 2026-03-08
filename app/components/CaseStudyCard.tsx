@@ -1,6 +1,6 @@
 'use client'
 
-import { Exito } from "../model/EXITO";
+import { Exito } from "../content/types";
 import { ensureGsap, gsap, useGSAP, ScrollTrigger } from "../lib/gsapClient";
 import { useRef } from "react";
 

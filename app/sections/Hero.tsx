@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/Button";
+import { HeroContent } from "../content/types";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Particle {
@@ -84,7 +85,11 @@ function Particles() {
 }
 
 // ─── Hero Page ────────────────────────────────────────────────────────────────
-export default function Hero() {
+interface HeroProps {
+  content: HeroContent
+}
+
+export default function Hero({ content }: HeroProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -94,6 +99,8 @@ export default function Hero() {
 
   const fade = (delay: number) =>
     `transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`;
+
+  const titleParts = content.title.split(content.titleHighlight);
 
   return (
     <>
@@ -125,8 +132,8 @@ export default function Hero() {
 
           <div className="flex-1" />
 
-          <Button href="/contacto">
-            Evalua mi negocio
+          <Button href={content.ctaHref}>
+            {content.headerCtaText}
           </Button>
         </header>
 
@@ -136,18 +143,16 @@ export default function Hero() {
           {/* LEFT */}
           <div className="flex flex-col gap-2 md:gap-3 text-center md:text-left items-center md:items-start">
 
-
-
             {/* Headline */}
             <h1
               className={`text-white font-bold leading-[1.08] tracking-[-0.03em] text-4xl md:text-5xl ${fade(200)}`}
               style={{ transitionDelay: "200ms" }}
             >
-              Consigue un flujo{" "}
+              {titleParts[0]}
               <span className="bg-gradient-to-r from-white to-teal-400 bg-clip-text text-transparent">
-                predecible
-              </span>{" "}
-              de citas calificadas, sin perseguir leads ni vivir pegado al celular.
+                {content.titleHighlight}
+              </span>
+              {titleParts[1]}
             </h1>
 
             {/* Subheadline */}
@@ -155,9 +160,7 @@ export default function Hero() {
               className={`text-white/50 text-base md:text-lg leading-relaxed max-w-[480px] ${fade(340)}`}
               style={{ transitionDelay: "340ms" }}
             >
-              Instalamos un sistema de ventas que atrae a tu cliente ideal,
-              filtra a los curiosos y agenda automáticamente solo a quienes
-              están listos para comprar.
+              {content.subtitle}
             </p>
 
             {/* CTA */}
@@ -165,11 +168,11 @@ export default function Hero() {
               className={`flex flex-col gap-1.5 items-center md:items-start ${fade(460)}`}
               style={{ transitionDelay: "460ms" }}
             >
-              <Button href="/contacto">
-                Iniciar Diagnóstico de Viabilidad
+              <Button href={content.ctaHref}>
+                {content.ctaText}
               </Button>
               <span className="text-teal-400 text-sm font-medium">
-                Solo toma 45 segundos
+                {content.ctaSubtext}
               </span>
             </div>
 

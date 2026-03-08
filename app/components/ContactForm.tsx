@@ -5,25 +5,15 @@ import { Button } from './Button';
 import { cn } from '../lib/utils';
 import { ensureGsap, gsap, useGSAP } from '../lib/gsapClient';
 import { useContactForm } from '../hooks/useContactForm';
+import { ContactFormContent } from '../content/types';
 
-type FormStep = {
-  id: string;
-  label: string;
-  placeholder: string;
-  type: string;
-};
+interface ContactFormProps {
+  vertical: string
+  content: ContactFormContent
+}
 
-const steps: FormStep[] = [
-  { id: 'name', label: '¿Cómo te llamas?', placeholder: 'Tu nombre completo', type: 'text' },
-  { id: 'email', label: '¿A qué correo te escribimos?', placeholder: 'tu@email.com', type: 'email' },
-  { id: 'brand', label: '¿Cómo se llama tu marca o negocio?', placeholder: 'Nombre de tu negocio', type: 'text' },
-  { id: 'brand_story', label: 'Cuéntanos un poco sobre tu marca', placeholder: '¿Qué haces y qué buscas lograr?', type: 'textarea' },
-  { id: 'website', label: '¿Tienes website o redes sociales?', placeholder: 'url o @usuario', type: 'text' },
-  { id: 'budget', label: '¿Con cuanto presupuesto cuentas para este proyecto?', placeholder: '$10000 MXN', type: 'text' },
-  { id: 'source', label: '¿Cómo nos encontraste?', placeholder: 'Selecciona una opción', type: 'select' },
-];
-
-export default function ContactForm() {
+export default function ContactForm({ vertical, content }: ContactFormProps) {
+  const steps = content.steps
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, string>>({});
   const containerRef = useRef(null);
@@ -90,19 +80,19 @@ export default function ContactForm() {
   const validateStep = (stepIndex: number) => {
     const step = steps[stepIndex];
     const value = formData[step.id] || '';
-    
+
     // Optional fields
     if (['brand_story', 'website', 'budget'].includes(step.id)) return true;
-    
+
     // Mandatory fields check
     if (!value.trim()) return false;
-    
+
     // Email validation
     if (step.id === 'email') {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(value);
     }
-    
+
     return true;
   };
 
@@ -110,19 +100,13 @@ export default function ContactForm() {
     if (isAnimating || isSubmitting) return;
 
     if (!validateStep(currentStep)) {
-      // Optional: Add a shake animation or error message here
       return;
     }
 
     if (currentStep < steps.length - 1) {
       animateTransition(currentStep + 1);
     } else {
-      const success = await sendForm(formData);
-      if (success) {
-        alert('¡Gracias! Nos pondremos en contacto contigo pronto.');
-      } else {
-        alert('Hubo un error al enviar el formulario. Por favor intenta de nuevo.');
-      }
+      await sendForm({ ...formData, vertical });
     }
   };
 
@@ -138,11 +122,11 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div className="flex flex-col items-center justify-center w-full min-h-[40vh] text-center space-y-6">
-        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">¡Mensaje Enviado!</h2>
+        <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">{content.successTitle}</h2>
         <p className="text-xl text-white/60 max-w-md">
-          Gracias por tu interés. Revisaremos tu información y nos pondremos en contacto contigo lo antes posible.
+          {content.successMessage}
         </p>
-        <Button variant="primary" href="/" className="mt-8">Volver al inicio</Button>
+        <Button variant="primary" href={content.successReturnHref} className="mt-8">{content.successReturnText}</Button>
       </div>
     );
   }
@@ -218,10 +202,10 @@ export default function ContactForm() {
           {currentStep === 0 ? (
             <Button
               variant="outline"
-              href="/"
+              href={content.returnHref}
               className="border-white/20 text-white/60 hover:text-white hover:border-white w-full md:w-40 hover:bg-transparent"
             >
-              Regresar
+              {content.returnButtonText}
             </Button>
           ) : (
             <Button
@@ -230,7 +214,7 @@ export default function ContactForm() {
               className="border-white/20 text-white/60 hover:text-white hover:border-white w-full md:w-40  hover:bg-transparent"
               disabled={isSubmitting}
             >
-              Atrás
+              {content.backButtonText}
             </Button>
           )}
           <Button
@@ -242,7 +226,7 @@ export default function ContactForm() {
             )}
             disabled={!isValid || isSubmitting}
           >
-            {isSubmitting ? 'Enviando...' : (isLastStep ? 'Enviar' : 'Siguiente')}
+            {isSubmitting ? 'Enviando...' : (isLastStep ? content.submitButtonText : content.nextButtonText)}
           </Button>
         </div>
 

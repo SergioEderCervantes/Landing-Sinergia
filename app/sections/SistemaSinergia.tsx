@@ -1,40 +1,13 @@
 'use client';
 import { useRef } from "react";
 import { gsap, useGSAP, ScrollTrigger, ensureGsap } from "../lib/gsapClient";
+import { SistemaSinergiaContent } from "../content/types";
 
-type Step = {
-  number: string;
-  title: string;
-  body: string;
-};
+interface ProcessStepsProps {
+  content: SistemaSinergiaContent
+}
 
-const stepsData: Step[] = [
-  {
-    number: "01",
-    title: "Atracción estratégica",
-    body: `Usamos Google Ads y Facebook Ads en Aguascalientes para ponerte frente a personas que ya están buscando lo que tú vendes.`,
-  },
-  {
-    number: "02",
-    title: "Página que convierte",
-    body: `Creamos una página clara que explica tu servicio sin confundir, genera confianza y lleva directo a agendar o cotizar.`,
-  },
-  {
-    number: "03",
-    title: "Seguimiento automático",
-    body: `Implementamos seguimiento por WhatsApp para que ningún prospecto se pierda: respuestas inmediatas, confirmación de citas y recordatorios automáticos.`,
-  },
-];
-type ProcessStepsProps = {
-  title?: string;
-  steps?: Step[];
-
-};
-
-export default function ProcessSteps({
-  title = "El Sistema Sinergia",
-  steps = stepsData,
-}: ProcessStepsProps) {
+export default function ProcessSteps({ content }: ProcessStepsProps) {
   const sectionCont = useRef(null);
 
   useGSAP(() => {
@@ -51,7 +24,7 @@ export default function ProcessSteps({
       });
 
     // Construcción dinámica de la línea de tiempo
-    steps.forEach((_, idx) => {
+    content.phases.forEach((_, idx) => {
       // 1. Dot (excepto el primero)
       if (idx !== 0) {
         tl.fromTo(`.step-dot-${idx}`,{
@@ -80,21 +53,21 @@ export default function ProcessSteps({
       <div className="grid grid-cols-12 gap-6">
         <div className="hidden lg:block" />
         <div className="col-span-12 lg:col-span-10 px-6 lg:px-0">
-          
+
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{title}</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">{content.title}</h2>
             <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-              Construimos un sistema de ventas completo.
+              {content.subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {steps.map((step, idx) => (
-              <article key={step.number} className="text-center">
+            {content.phases.map((phase, idx) => (
+              <article key={phase.number} className="text-center">
                 <div className="mb-6">
-                  <p className="mb-2 text-xs tracking-[0.25em] text-white/45">{step.number}</p>
+                  <p className="mb-2 text-xs tracking-[0.25em] text-white/45">{phase.number}</p>
                   <h3 className={`step-title-${idx} text-2xl font-semibold tracking-wide`}>
-                    {step.title}
+                    {phase.title}
                   </h3>
                 </div>
 
@@ -107,7 +80,7 @@ export default function ProcessSteps({
                 </div>
 
                 <p className="mx-auto max-w-xs text-sm leading-6 text-white/70">
-                  {step.body}
+                  {phase.body}
                 </p>
               </article>
             ))}

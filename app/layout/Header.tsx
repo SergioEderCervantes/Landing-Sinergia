@@ -1,6 +1,11 @@
 import { Button } from "../components/Button";
 
-const Header = () => {
+interface HeaderProps {
+  ctaText?: string
+  ctaHref?: string
+}
+
+const Header = ({ ctaText = 'Evalua mi negocio', ctaHref = '/contacto' }: HeaderProps) => {
     return (
         <header className="flex flex-col justify-between items-center px-12 py-4 min-h-[10vh] bg-transparent md:flex-row  w-full">
             <div className="w-40 ">
@@ -17,8 +22,8 @@ const Header = () => {
                 </nav> */}
             </div>
             <div className="btn">
-                <Button size="md" href="/contacto">
-                    Evalua mi negocio
+                <Button size="md" href={ctaHref}>
+                    {ctaText}
                 </Button>
             </div>
         </header>
