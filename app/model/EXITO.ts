@@ -51,8 +51,8 @@ const vestinovia: Exito = {
     // testimony: "Sinergia nos ayudó a entender que no solo vendemos vestidos, vendemos una experiencia. Ahora nuestras campañas realmente conectan con las novias, recibimos más citas y sentimos que nuestra marca transmite seguridad y confianza."
   },
 
-  hImage: "/images/casos-exito/vestiNovia_h.jpeg",
-  vImage: "/images/casos-exito/vestiNovia_h.jpeg",
+  hImage: "/images/casos-exito/vestiNovia_h.webp",
+  vImage: "/images/casos-exito/vestiNovia_v.webp",
 };
 
 
@@ -90,8 +90,8 @@ const DBS_legal: Exito = {
       },
     ],
   },
-  hImage: "/images/casos-exito/DBS_h.png",
-  vImage: "/images/casos-exito/DBS_v.png",
+  hImage: "/images/casos-exito/DBS_h.webp",
+  vImage: "/images/casos-exito/DBS_h.webp",
 };
 
 const musacchioExito: Exito = {
@@ -123,13 +123,12 @@ const musacchioExito: Exito = {
     // testimony:"Ahora nuestra presencia digital se siente al nivel de nuestros proyectos. La gente entiende mejor lo que hacemos y por qué lo hacemos así.",
   },
   // Reemplaza por tus rutas reales
-  hImage: "/images/casos-exito/musacchio_h.jpeg",
-  vImage: "/images/casos-exito/musacchio_v.jpeg",
+  hImage: "/images/casos-exito/musacchio_h.webp",
+  vImage: "/images/casos-exito/musacchio_h.webp",
 };
 
 export const CASOS: Exito[] = [
   musacchioExito,
-  // jMunozExito,
   vestinovia,
   DBS_legal,
 ];

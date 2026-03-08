@@ -58,7 +58,12 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseItem }) => {
           <img
             src={caseItem.hImage}
             alt={caseItem.name}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover hidden lg:block"
+          />
+          <img
+            src={caseItem.vImage}
+            alt={caseItem.name}
+            className="absolute inset-0 w-full h-full object-cover block lg:hidden"
           />
           <div className="absolute inset-0 bg-linear-to-tr from-white/5 to-transparent opacity-0 group-hover/visual:opacity-100 transition-opacity" />
         </div>

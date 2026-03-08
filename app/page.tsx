@@ -16,7 +16,6 @@ export default function Home() {
         <Header />
         <Hero />
         <Problematica/>
-        {/* <SistemaSinergia /> */}
         <ProcessSteps/>
         <CasosSistema />
         <LoQueCambia />

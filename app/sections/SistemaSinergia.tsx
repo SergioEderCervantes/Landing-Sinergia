@@ -40,15 +40,15 @@ export default function ProcessSteps({
   useGSAP(() => {
     ensureGsap();
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
+      const tl = gsap.timeline({
+        scrollTrigger: {
         trigger: sectionCont.current,
-        start: 'top 20%',
+        start: window.innerWidth < 768 ? 'center center' : 'top 20%',
         pin: true,
         end: '+=800',
         scrub: 1
-      }
-    });
+        }
+      });
 
     // Construcción dinámica de la línea de tiempo
     steps.forEach((_, idx) => {
@@ -99,7 +99,7 @@ export default function ProcessSteps({
                 </div>
 
                 <div className="mx-auto mb-6 flex w-full items-center gap-5">
-                  <div className={`step-dot-${idx} size-4 rounded-full ${idx !== 0 ? "bg-white/30" : "bg-transparent"}`} />
+                  <div className={`step-dot-${idx} hidden md:block size-4 rounded-full ${idx !== 0 ? "bg-white/30" : "bg-transparent"}`} />
 
                   <div className="relative h-0.5 flex-1 overflow-hidden bg-white/10">
                     <div className={`step-line-animated-${idx} absolute left-0 top-0 h-full w-0 bg-shock-pink`} />
