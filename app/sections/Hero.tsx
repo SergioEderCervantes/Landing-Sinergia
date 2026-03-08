@@ -12,11 +12,9 @@ interface Particle {
 function HeroLogo() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
-      {/* Ambient glow */}
-      <div className="absolute w-96 h-96 rounded-full bg-teal-500/10 blur-3xl animate-pulse pointer-events-none" />
-
+      <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full bg-teal-500/10 blur-3xl animate-pulse pointer-events-none" />
       <svg
-        className="w-[min(360px,90%)] h-auto drop-shadow-2xl animate-[float_7s_ease-in-out_infinite]"
+        className="w-[min(280px,80%)] md:w-[min(360px,90%)] h-auto drop-shadow-2xl animate-[float_7s_ease-in-out_infinite]"
         viewBox="0 0 423 375"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -129,34 +127,34 @@ export default function Hero() {
 
         {/* ── HEADER ── */}
         <header
-          className={`relative z-20 flex items-center justify-between px-12 py-5 ${fade(0)}`}
+          className={`relative z-20 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 ${fade(0)}`}
           style={{ transitionDelay: "0ms" }}
         >
-          <a href="/" className="block w-40 shrink-0">
+          <a href="/" className="block w-32 md:w-40 shrink-0">
             <img src="/logos/logotipo_blanco.svg" alt="Sinergia" className="w-full" />
           </a>
 
-          {/* Nav slot — uncomment links when ready */}
           <div className="flex-1" />
 
           <a
             href="/contacto"
-            className="bg-white text-black text-sm font-bold px-5 py-2 rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-200"
+            className="bg-white text-black text-xs md:text-sm font-bold px-4 md:px-5 py-2 rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-200"
           >
             Evalúa mi negocio
           </a>
         </header>
 
         {/* ── HERO ── */}
-        <div className="relative z-10 grid grid-cols-2 gap-8 items-center max-w-[1200px] mx-auto px-6 pt-10 pb-12 min-h-[calc(100vh-80px)]">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-[1200px] mx-auto px-6 md:px-12 pt-6 md:pt-8 pb-12 min-h-[calc(100vh-72px)]">
 
           {/* LEFT */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2 md:gap-3 text-center md:text-left items-center md:items-start">
 
+      
 
             {/* Headline */}
             <h1
-              className={`text-white font-bold leading-[1.08] tracking-[-0.03em] text-5xl ${fade(200)}`}
+              className={`text-white font-bold leading-[1.08] tracking-[-0.03em] text-4xl md:text-5xl ${fade(200)}`}
               style={{ transitionDelay: "200ms" }}
             >
               Consigue un flujo{" "}
@@ -168,7 +166,7 @@ export default function Hero() {
 
             {/* Subheadline */}
             <p
-              className={`text-white/50 text-lg leading-relaxed max-w-[480px] ${fade(340)}`}
+              className={`text-white/50 text-base md:text-lg leading-relaxed max-w-[480px] ${fade(340)}`}
               style={{ transitionDelay: "340ms" }}
             >
               Instalamos un sistema de ventas que atrae a tu cliente ideal,
@@ -178,12 +176,12 @@ export default function Hero() {
 
             {/* CTA */}
             <div
-              className={`flex flex-col gap-1.5 items-start ${fade(460)}`}
+              className={`flex flex-col gap-1.5 items-center md:items-start ${fade(460)}`}
               style={{ transitionDelay: "460ms" }}
             >
               <a
                 href="/contacto"
-                className="btn-cta relative overflow-hidden bg-white text-black font-bold text-base px-8 py-4 rounded-lg hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-[0_8px_30px_rgba(20,184,166,0.22)] active:scale-[0.985] transition-all duration-200"
+                className="btn-cta relative overflow-hidden bg-white text-black font-bold text-sm md:text-base px-6 md:px-8 py-3.5 md:py-4 rounded-lg hover:-translate-y-0.5 hover:scale-[1.015] hover:shadow-[0_8px_30px_rgba(20,184,166,0.22)] active:scale-[0.985] transition-all duration-200"
               >
                 Iniciar Diagnóstico de Viabilidad
               </a>
@@ -215,11 +213,16 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT — hidden on mobile, shown on md+ */}
           <div
-            className={`h-[500px] relative ${fade(280)}`}
+            className={`hidden md:block h-[500px] relative ${fade(280)}`}
             style={{ transitionDelay: "280ms" }}
           >
+            <HeroLogo />
+          </div>
+
+          {/* Mobile logo — smaller, shown only on mobile below content */}
+          <div className={`md:hidden h-[260px] relative ${fade(500)}`} style={{ transitionDelay: "500ms" }}>
             <HeroLogo />
           </div>
         </div>
