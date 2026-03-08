@@ -1,4 +1,4 @@
-import Hero from "./sections/Hero";
+import Hero from "./sections/Hero2";
 import Header from "./layout/Header";
 import Problematica from "./sections/Problematica";
 import CasosSistema from "./sections/CasosSistema";
