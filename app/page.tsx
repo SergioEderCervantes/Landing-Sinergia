@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <main className="font-[inter] bg-linear-to-b from-white dark:from-black from-10% to-background  text-foreground">
-        <Header />
+        
         <Hero />
         <Problematica/>
         {/* <SistemaSinergia /> */}
