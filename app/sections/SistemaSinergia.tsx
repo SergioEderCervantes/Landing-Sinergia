@@ -16,7 +16,7 @@ export default function ProcessSteps({ content }: ProcessStepsProps) {
       const tl = gsap.timeline({
         scrollTrigger: {
         trigger: sectionCont.current,
-        start: window.innerWidth < 768 ? 'center center' : 'top 20%',
+        start: window.innerWidth < 768 ? 'center center' : 'top top',
         pin: true,
         end: '+=800',
         scrub: 1

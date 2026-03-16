@@ -74,4 +74,34 @@ const DBSLegal: Exito = {
   vImage: '/images/casos-exito/DBS_h.webp',
 }
 
-export { musacchioExito, vestinovia, DBSLegal }
+
+const jMunozExito: Exito = {
+  name: "J. Muñoz Arquitectos",
+  shortDesc:
+    "Campañas en Meta Ads para atraer doctores interesados en abrir o remodelar consultorios, usando embudo frío + caliente y creativos tipo caso de éxito para generar conversaciones listas para cotizar.",
+  before:
+    "Antes de trabajar con Sinergia, la captación de prospectos por anuncios no era constante y dependía más de esfuerzos aislados. No había una estructura clara ni una forma repetible de convertir el interés en mensajes útiles para cotizar proyectos.",
+  services: [
+    "Estrategia de Meta Ads enfocada a conversaciones (WhatsApp/Mensajes)",
+    "Estructura de embudo: Frío (descubrimiento) + Caliente (remarketing)",
+    "Producción y adaptación de creativos (video y carrusel) orientados a conversión",
+    "Optimización continua según costo por conversación y volumen"
+  ],
+  impact: {
+    results: [
+      {
+        "Más conversaciones con doctores": "En el periodo analizado se generaron 51 conversaciones con mensajes iniciados desde Meta Ads."
+      },
+      {
+        "Creativos de 'caso de éxito' como motor": "Los formatos ganadores fueron el carrusel de caso de éxito (17 conversaciones) y el video de caso de éxito (13 conversaciones)."
+      },
+      {
+        "Demanda real incluso fuera del estado": "Además de Aguascalientes, empezaron a llegar prospectos de otros estados que solicitaron cotización ."
+      }
+    ],
+  },
+  hImage: "/images/casos-exito/jMunoz.jpg",
+  vImage: "/images/casos-exito/jMunoz.jpg"
+};
+
+export { musacchioExito, vestinovia, DBSLegal , jMunozExito}

@@ -1,10 +1,10 @@
 import { generalContent } from './verticals/general'
-import { mockContent } from './verticals/mock'
+import { arquitectoContent } from './verticals/arquitectos'
 import { VerticalContent } from './types'
 
 const VERTICALS: Record<string, VerticalContent> = {
   general: generalContent,
-  mock: mockContent,
+  arquitecto: arquitectoContent
   // Future verticals:
   // medico: medicoContent,
   // arquitecto: arquitectoContent,
