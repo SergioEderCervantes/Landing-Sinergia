@@ -1,7 +1,8 @@
 import { Exito } from './types'
 
+// AQUI SE VAN A ALMACENAR TODOS LOS CASOS DE EXITO, ESTO PARA PODER REUTILIZARLOS EN DIFERENTES VERTICALES
+
 const musacchioExito: Exito = {
-  number: 1,
   name: 'Musacchio Estudio',
   shortDesc:
     'Arquitectura premium en Aguascalientes con una presencia digital que comunica valor, proceso y nivel desde el primer vistazo.',
@@ -26,7 +27,6 @@ const musacchioExito: Exito = {
 }
 
 const vestinovia: Exito = {
-  number: 2,
   name: 'VestiNovia',
   shortDesc:
     'Boutique de vestidos de novia en Aguascalientes que buscaba más citas y mayor conexión emocional con sus clientas.',
@@ -50,7 +50,6 @@ const vestinovia: Exito = {
 }
 
 const DBSLegal: Exito = {
-  number: 3,
   name: 'DBS Legal',
   shortDesc:
     'Despacho de abogados especializado en propiedad intelectual y derecho corporativo que transformó su presencia digital para captar clientes estratégicos desde el primer mes.',
@@ -75,4 +74,4 @@ const DBSLegal: Exito = {
   vImage: '/images/casos-exito/DBS_h.webp',
 }
 
-export const CASOS: Exito[] = [musacchioExito, vestinovia, DBSLegal]
+export { musacchioExito, vestinovia, DBSLegal }

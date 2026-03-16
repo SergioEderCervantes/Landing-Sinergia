@@ -5,12 +5,13 @@ import { ensureGsap, gsap, useGSAP, ScrollTrigger } from "../lib/gsapClient";
 import { useRef } from "react";
 
 interface CaseStudyCardProps {
+  index: number;
   caseItem: Exito;
 }
 
-const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ caseItem }) => {
+const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ index, caseItem }) => {
   const container = useRef(null)
-  const numberDisplay = String(caseItem.number).padStart(2, "0");
+  const numberDisplay = String(index + 1).padStart(2, "0");
   const allResults = caseItem.impact.results.flatMap((r) => Object.entries(r));
   ensureGsap();
   useGSAP(()=>{

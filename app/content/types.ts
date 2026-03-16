@@ -5,7 +5,6 @@ export interface Impact {
 }
 
 export interface Exito {
-  number: number
   name: string
   shortDesc: string
   before: string

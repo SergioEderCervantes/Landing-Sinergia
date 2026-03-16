@@ -26,7 +26,7 @@ const CasosSistema = ({ content }: CasosSistemaProps) => {
 
           <div className="space-y-24">
             {content.cases.map((caseItem, index) => (
-              <CaseStudyCard key={index} caseItem={caseItem} />
+              <CaseStudyCard key={index} index={index} caseItem={caseItem} />
             ))}
           </div>
         </div>
