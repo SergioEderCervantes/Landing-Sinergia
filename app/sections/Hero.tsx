@@ -119,7 +119,7 @@ export default function Hero({ content }: HeroProps) {
         <Particles />
 
         {/* Ambient gradient */}
-        <div className="absolute top-1/4 left-4 w-[480px] h-[480px] rounded-full bg-teal-500/5 blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-4 size-120 rounded-full bg-teal-500/5 blur-3xl pointer-events-none" />
 
         {/* ── HEADER ── */}
         <header
@@ -138,7 +138,7 @@ export default function Hero({ content }: HeroProps) {
         </header>
 
         {/* ── HERO ── */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-[1200px] mx-auto px-6 md:px-12 pt-6 md:pt-8 pb-12 min-h-[calc(100vh-72px)]">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-300 mx-auto px-6 md:px-12 pt-6 md:pt-8 pb-12 min-h-[calc(100vh-72px)]">
 
           {/* LEFT */}
           <div className="flex flex-col gap-2 md:gap-3 text-center md:text-left items-center md:items-start">
@@ -149,7 +149,7 @@ export default function Hero({ content }: HeroProps) {
               style={{ transitionDelay: "200ms" }}
             >
               {titleParts[0]}
-              <span className="bg-gradient-to-r from-white to-teal-400 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-white to-teal-400 bg-clip-text text-transparent">
                 {content.titleHighlight}
               </span>
               {titleParts[1]}
@@ -157,7 +157,7 @@ export default function Hero({ content }: HeroProps) {
 
             {/* Subheadline */}
             <p
-              className={`text-white/50 text-base md:text-lg leading-relaxed max-w-[480px] ${fade(340)}`}
+              className={`text-white/50 text-base md:text-lg leading-relaxed max-w-120 ${fade(340)}`}
               style={{ transitionDelay: "340ms" }}
             >
               {content.subtitle}
@@ -181,14 +181,14 @@ export default function Hero({ content }: HeroProps) {
 
           {/* RIGHT — hidden on mobile, shown on md+ */}
           <div
-            className={`hidden md:block h-[500px] relative ${fade(280)}`}
+            className={`hidden md:block h-125 relative ${fade(280)}`}
             style={{ transitionDelay: "280ms" }}
           >
             <HeroLogo />
           </div>
 
           {/* Mobile logo — smaller, shown only on mobile below content */}
-          <div className={`md:hidden h-[260px] relative ${fade(500)}`} style={{ transitionDelay: "500ms" }}>
+          <div className={`md:hidden h-65 relative ${fade(500)}`} style={{ transitionDelay: "500ms" }}>
             <HeroLogo />
           </div>
         </div>
