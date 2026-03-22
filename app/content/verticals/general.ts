@@ -4,6 +4,10 @@ import { musacchioExito, vestinovia, DBSLegal } from "@/app/content/cases";
 import { VerticalContent } from "../types";
 
 export const generalContent: VerticalContent = {
+  seo: {
+    title: 'Sistema de Ventas para Negocios en Aguascalientes | Sinergia Studio',
+    description: 'Instalamos un sistema que atrae a tu cliente ideal, filtra curiosos y agenda automáticamente solo a quienes están listos para comprar. Sin perseguir leads.',
+  },
   hero: {
     headerCtaText: "Evalua mi negocio",
     title:

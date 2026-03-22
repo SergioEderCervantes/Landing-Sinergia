@@ -107,7 +107,13 @@ export interface ContactFormContent {
   steps: FormStep[]
 }
 
+export interface SeoContent {
+  title: string
+  description: string
+}
+
 export interface VerticalContent {
+  seo: SeoContent
   hero: HeroContent
   problematica: ProblematicaContent
   sistemaSinergia: SistemaSinergiaContent

@@ -1,9 +1,26 @@
 import { getVerticalContent, AVAILABLE_VERTICALS } from '@/app/content'
+import type { Metadata } from 'next'
 import Header from '@/app/layout/Header'
 import ContactForm from '@/app/components/ContactForm'
 
 export async function generateStaticParams() {
   return AVAILABLE_VERTICALS.map((vertical) => ({ vertical }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ vertical: string }>
+}): Promise<Metadata> {
+  const { vertical } = await params
+  const content = getVerticalContent(vertical)
+  return {
+    title: `Contacto — ${content.seo.title}`,
+    description: content.seo.description,
+    alternates: {
+      canonical: `https://sinergiastudiomkt.com/${vertical}/contacto`,
+    },
+  }
 }
 
 export default async function ContactoPage({

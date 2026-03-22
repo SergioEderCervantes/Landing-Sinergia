@@ -4,6 +4,10 @@ import { VerticalContent } from '../types'
 import { FaChartLine, FaUsers, FaClock } from 'react-icons/fa'
 
 export const arquitectoContent: VerticalContent = {
+  seo: {
+    title: 'Más Proyectos para Constructoras y Arquitectos en Aguascalientes | Sinergia Studio',
+    description: 'Instalamos anuncios + página de conversión para que cotizaciones te lleguen solas. Sistema probado con despachos y constructoras en Aguascalientes.',
+  },
   hero: {
     headerCtaText: "Quiero más proyectos",
     title: "Cotizaciones constantes para constructoras y despachos en ",
