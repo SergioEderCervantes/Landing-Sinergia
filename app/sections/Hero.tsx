@@ -132,13 +132,13 @@ export default function Hero({ content }: HeroProps) {
 
           <div className="flex-1" />
 
-          <Button href={content.ctaHref}>
+          <Button className="hidden md:block" href={content.ctaHref}>
             {content.headerCtaText}
           </Button>
         </header>
 
         {/* ── HERO ── */}
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-300 mx-auto px-6 md:px-12 pt-6 md:pt-8 pb-12 min-h-[calc(100vh-72px)]">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8  items-center max-w-300 mx-auto px-6 md:px-12 pt-6 mt-30 md:pt-8 pb-12 min-h-[calc(100vh-72px)]">
 
           {/* LEFT */}
           <div className="flex flex-col gap-2 md:gap-3 text-center md:text-left items-center md:items-start">

@@ -6,8 +6,8 @@
   --teal: #47bfd7;
 
   --lavender-web: #e1e5f2;
-  --background: var(--teal);
-  --foreground: var(--gunmetal);
+  --background: var(--gunmetal);
+  --foreground: var(--lavender-web);
 }
 
 @theme {
@@ -18,14 +18,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-} 
-
-@media (prefers-color-scheme: dark){
-  :root{
-    --background: var(--gunmetal);
-    --foreground: var(--lavender-web);
-
-  }
 }
 
 @keyframes shimmer {
