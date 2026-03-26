@@ -43,7 +43,7 @@ export default async function VerticalPage({
   const content = getVerticalContent(vertical)
 
   return (
-    <main className="font-[inter] bg-linear-to-b from-white dark:from-black from-10% to-background text-foreground">
+    <main className="font-[inter] bg-linear-to-b from-black from-10% to-background text-foreground">
       <Hero content={content.hero} />
       <Problematica content={content.problematica} />
       <ProcessSteps content={content.sistemaSinergia} />
