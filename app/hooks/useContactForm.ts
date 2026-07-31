@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { emailService, ContactFormData } from '../lib/email-service';
+import { fbTrack } from '../lib/metaPixel';
 
 export type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 
@@ -14,8 +15,6 @@ export function useContactForm() {
     setError(null);
 
     try {
-      // Map component keys to ContactFormData keys
-      console.table(rawValues)
       const data: ContactFormData = {
         name: rawValues.name || '',
         email: rawValues.email || '',
@@ -24,11 +23,17 @@ export function useContactForm() {
         website: rawValues.website || '',
         budget: rawValues.budget || '',
         source: rawValues.source || '',
-        vertical: 'default',
+        vertical: rawValues.vertical || 'default', // bug fix: antes ignoraba el vertical real
       };
-      console.table(data)
+
       await emailService.sendContactForm(data);
       setStatus('success');
+
+      fbTrack('Lead', {
+        content_name: data.vertical,
+        content_category: 'contacto',
+      });
+
       return true;
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error al enviar el formulario';

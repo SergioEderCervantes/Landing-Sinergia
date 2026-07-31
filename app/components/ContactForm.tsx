@@ -6,6 +6,7 @@ import { cn } from '../lib/utils';
 import { ensureGsap, gsap, useGSAP } from '../lib/gsapClient';
 import { useContactForm } from '../hooks/useContactForm';
 import { ContactFormContent } from '../content/types';
+import { fbTrack, fbTrackCustom } from '@/app/lib/metaPixel'
 
 interface ContactFormProps {
   vertical: string
@@ -96,6 +97,7 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
     return true;
   };
 
+
   const handleNext = async () => {
     if (isAnimating || isSubmitting) return;
 
@@ -103,8 +105,15 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
       return;
     }
 
+    // primera vez que avanza = el usuario "inició" el form
+    if (currentStep === 0) {
+      fbTrack('InitiateCheckout', { content_name: vertical });
+    }
+
     if (currentStep < steps.length - 1) {
-      animateTransition(currentStep + 1);
+      const nextStep = currentStep + 1;
+      fbTrackCustom('form_step', { vertical, step: nextStep, step_name: steps[nextStep]?.id ?? nextStep });
+      animateTransition(nextStep);
     } else {
       await sendForm({ ...formData, vertical });
     }
