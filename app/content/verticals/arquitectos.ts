@@ -66,7 +66,6 @@ export const arquitectoContent: VerticalContent = {
     title: "Resultados reales con despachos en Aguascalientes",
     subtitle: "Hemos trabajado con estudios de gran impacto en la ciudad",
     cases: [
-      jMunozExito,
       musacchioExito,
     ]
   },
