@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { emailService, ContactFormData } from '../lib/email-service';
 import { fbTrack } from '../lib/metaPixel';
+import { gtagReportConversion } from '../lib/googleAds'
+
 
 export type FormStatus = 'idle' | 'sending' | 'success' | 'error';
 
@@ -23,7 +25,7 @@ export function useContactForm() {
         website: rawValues.website || '',
         budget: rawValues.budget || '',
         source: rawValues.source || '',
-        vertical: rawValues.vertical || 'default', // bug fix: antes ignoraba el vertical real
+        vertical: rawValues.vertical || 'default',
       };
 
       await emailService.sendContactForm(data);
@@ -33,6 +35,10 @@ export function useContactForm() {
         content_name: data.vertical,
         content_category: 'contacto',
       });
+      // gtagReportConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL!, {
+      //   value: 1.0,
+      //   currency: 'MXN',
+      // })
 
       return true;
     } catch (err) {

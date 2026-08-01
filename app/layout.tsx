@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import MetaPixelWrapper from "./components/MetaPixelWrapper";
+import GoogleTagWrapper from "./components/GoogleTagWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
         <MetaPixelWrapper />
+        <GoogleTagWrapper/>
         {children}
       </body>
     </html>
