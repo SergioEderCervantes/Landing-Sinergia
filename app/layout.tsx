@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import MetaPixelWrapper from "./components/MetaPixelWrapper";
 import GoogleTagWrapper from "./components/GoogleTagWrapper";
+import VisitPing from "./components/VisitPing";
+import { SITE_URL } from "./lib/siteUrl";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +23,7 @@ const inter = Inter({
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sinergiastudiomkt.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Sinergia Studio — Sistema de Ventas Digital en Aguascalientes',
     template: '%s | Sinergia Studio',
@@ -50,6 +52,7 @@ export default function RootLayout({
       >
         <MetaPixelWrapper />
         <GoogleTagWrapper/>
+        <VisitPing />
         {children}
       </body>
     </html>

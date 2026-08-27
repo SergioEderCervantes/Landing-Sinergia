@@ -1,4 +1,5 @@
 import { getVerticalContent, AVAILABLE_VERTICALS } from '@/app/content'
+import { SITE_URL } from '@/app/lib/siteUrl'
 import type { Metadata } from 'next'
 import Hero from '@/app/sections/Hero'
 import Problematica from '@/app/sections/Problematica'
@@ -8,6 +9,8 @@ import LoQueCambia from '@/app/sections/LoQueCambia'
 import ParaQuien from '@/app/sections/ParaQuien'
 import QueIncluye from '@/app/sections/QueIncluye'
 import EvaluacionGratuita from '@/app/sections/EvaluacionGratuita'
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return AVAILABLE_VERTICALS.map((vertical) => ({ vertical }))
@@ -26,10 +29,10 @@ export async function generateMetadata({
     openGraph: {
       title: content.seo.title,
       description: content.seo.description,
-      url: `https://sinergiastudiomkt.com/${vertical}`,
+      url: `${SITE_URL}/${vertical}`,
     },
     alternates: {
-      canonical: `https://sinergiastudiomkt.com/${vertical}`,
+      canonical: `${SITE_URL}/${vertical}`,
     },
   }
 }

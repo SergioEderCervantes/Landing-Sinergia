@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { SITE_URL } from '@/app/lib/siteUrl'
 
 export const dynamic = 'force-static'
 
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://sinergiastudiomkt.com/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

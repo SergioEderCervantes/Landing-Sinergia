@@ -1,7 +1,10 @@
 import { getVerticalContent, AVAILABLE_VERTICALS } from '@/app/content'
+import { SITE_URL } from '@/app/lib/siteUrl'
 import type { Metadata } from 'next'
 import Header from '@/app/layout/Header'
 import ContactForm from '@/app/components/ContactForm'
+
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return AVAILABLE_VERTICALS.map((vertical) => ({ vertical }))
@@ -18,7 +21,7 @@ export async function generateMetadata({
     title: `Contacto — ${content.seo.title}`,
     description: content.seo.description,
     alternates: {
-      canonical: `https://sinergiastudiomkt.com/${vertical}/contacto`,
+      canonical: `${SITE_URL}/${vertical}/contacto`,
     },
   }
 }

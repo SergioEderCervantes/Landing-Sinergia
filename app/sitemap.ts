@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
 import { AVAILABLE_VERTICALS } from '@/app/content'
+import { SITE_URL } from '@/app/lib/siteUrl'
 
 export const dynamic = 'force-static'
 
-const BASE_URL = 'https://sinergiastudiomkt.com'
+const BASE_URL = SITE_URL
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const verticalRoutes = AVAILABLE_VERTICALS.flatMap((vertical) => [

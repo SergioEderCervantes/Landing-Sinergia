@@ -6,19 +6,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 pnpm dev      # Start development server (localhost:3000)
-pnpm build    # Production build (static export)
+pnpm build    # Production build
+pnpm start    # Run the production build locally (next start)
 pnpm lint     # Run ESLint
 ```
 
-This project uses **pnpm** (see `pnpm-workspace.yaml` / `pnpm-lock.yaml`), not npm. No test suite is configured.
+This project uses **pnpm** (see `pnpm-workspace.yaml` / `pnpm-lock.yaml`), not npm. No test suite is configured. Node 22 (see `.nvmrc` / `engines`).
 
 ## Architecture
 
-**Next.js 16 App Router** with **static export** (`output: "export"` in `next.config.ts`). The site is a multi-vertical landing page: the same section components are reused across different audience "verticals" (e.g. general vs. arquitectos), each with its own copy.
+**Next.js 16 App Router**, default build output. The site is a multi-vertical landing page: the same section components are reused across different audience "verticals" (e.g. general vs. arquitectos), each with its own copy. Pages are fully static (SSG); the only server-side code is under `app/api/` (route handlers → serverless functions).
+
+### Deployment
+
+Deployed on **Vercel** (zero-config, framework auto-detected). `NEXT_PUBLIC_*` vars are set in the Vercel project's Environment Variables and injected into the build automatically. Server-only secrets (future Meta CAPI / Resend) are runtime env vars **without** the `NEXT_PUBLIC_` prefix, so they never reach the client.
+
+`app/api/ping/` + `app/components/VisitPing.tsx` are a **temporary probe** to observe serverless function invocations — safe to delete.
 
 ### Vertical content system
 
-- Routes live under `app/[vertical]/` — `app/[vertical]/page.tsx` (main landing) and `app/[vertical]/contacto/page.tsx` (contact form page). Both call `generateStaticParams()` to pre-render one page per entry in `AVAILABLE_VERTICALS`, and `generateMetadata()` to set per-vertical SEO/OpenGraph tags.
+- Routes live under `app/[vertical]/` — `app/[vertical]/page.tsx` (main landing) and `app/[vertical]/contacto/page.tsx` (contact form page). Both call `generateStaticParams()` to pre-render one page per entry in `AVAILABLE_VERTICALS`, and `generateMetadata()` to set per-vertical SEO/OpenGraph tags. Both also set `export const dynamicParams = false`, so any slug not in `AVAILABLE_VERTICALS` 404s instead of being server-rendered on demand.
+- The public base URL (canonical/OpenGraph/sitemap/robots) comes from `SITE_URL` in `app/lib/siteUrl.ts` (`NEXT_PUBLIC_SITE_URL`, falling back to `https://sinergiastudiomkt.com`).
 - `app/page.tsx` (the root `/`) just `redirect()`s to `/general`.
 - `app/content/types.ts` defines `VerticalContent`, the single interface every vertical's copy must satisfy (hero, problematica, sistemaSinergia, casosSistema, loQueCambia, paraQuien, queIncluye, evaluacionGratuita, contactForm, seo).
 - `app/content/verticals/*.ts` (e.g. `general.ts`, `arquitectos.ts`) each export a `VerticalContent` object with that vertical's copy.
@@ -45,7 +53,7 @@ GSAP is used for animations. Import via `app/lib/gsapClient.ts` (client-safe wra
 
 ### Contact form
 
-EmailJS handles form submissions. Credentials are stored in `.env.local` (`NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`). Logic lives in `app/lib/email-service.ts` and `app/hooks/useContactForm.ts`. The form's steps/labels/copy come from a vertical's `contactForm` content (`ContactFormContent` in `app/content/types.ts`), while `ContactForm` also receives the current `vertical` slug directly (used for routing/return links, e.g. in `app/[vertical]/contacto/page.tsx`).
+EmailJS handles form submissions (client-side). Credentials are `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` — see `.env.example` for the full env var list. Logic lives in `app/lib/email-service.ts` (behind an `EmailService` interface, so a server-backed implementation can drop in later) and `app/hooks/useContactForm.ts`. The form's steps/labels/copy come from a vertical's `contactForm` content (`ContactFormContent` in `app/content/types.ts`), while `ContactForm` also receives the current `vertical` slug directly (used for routing/return links, e.g. in `app/[vertical]/contacto/page.tsx`).
 
 ### Path alias
 
