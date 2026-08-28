@@ -1,14 +1,15 @@
 import emailjs from "@emailjs/browser";
 
 export interface ContactFormData {
+  /** Campos de identidad, con ids canónicos en todos los verticales. */
   name: string;
   email: string;
-  brand: string;
-  brand_story: string;
-  website: string;
-  budget: string;
-  source: string;
+  phone: string;
   vertical: string;
+  /** Resto de campos del formulario (varía por vertical): empresa, brand, budget… */
+  extra: Record<string, string>;
+  /** `extra` ya formateado como texto legible ("Etiqueta: valor" por línea). */
+  details: string;
 }
 
 interface EmailService {
@@ -31,17 +32,16 @@ class EmailJsServive implements EmailService {
   }
 
   async sendContactForm(data: ContactFormData): Promise<void> {
-    // Estaria mejor poder mandar el objeto data directamente
     const templateData = {
       name: data.name,
       email: data.email,
-      brand: data.brand,
-      brand_story: data.brand_story,
-      website: data.website,
-      budget: data.budget,
-      source: data.source,
+      phone: data.phone,
       vertical: data.vertical,
+      details: data.details,
       submitted_at: new Date().toLocaleString("es-MX"),
+      // Campos sueltos del vertical, por si la plantilla los referencia por nombre
+      // ({{brand}}, {{empresa}}…). Los que no existan en la plantilla se ignoran.
+      ...data.extra,
     };
     try {
       const response = await emailjs.send(

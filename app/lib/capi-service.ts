@@ -16,6 +16,8 @@ export interface CapiUserData {
   phone?: string
   firstName?: string
   lastName?: string
+  /** ID anónimo estable; MISMO valor que se manda al Pixel (app/lib/externalId.ts). */
+  externalId?: string
   /** Cookie _fbp del navegador. */
   fbp?: string
   /** Cookie _fbc (o sintetizada desde fbclid). */
@@ -80,6 +82,10 @@ function buildUserData(u: CapiUserData = {}): Record<string, unknown> {
 
   const ln = sha256(u.lastName)
   if (ln) payload.ln = [ln]
+
+  // external_id: se hashea igual que el Pixel lo hashea en el cliente.
+  const ext = sha256(u.externalId)
+  if (ext) payload.external_id = [ext]
 
   // fbp/fbc/IP/UA van en claro (no son PII hasheable para Meta).
   if (u.fbp) payload.fbp = u.fbp

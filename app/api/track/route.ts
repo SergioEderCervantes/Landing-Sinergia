@@ -19,6 +19,7 @@ interface TrackRequestBody {
     phone?: string
     firstName?: string
     lastName?: string
+    externalId?: string
     fbp?: string
     fbc?: string
   }

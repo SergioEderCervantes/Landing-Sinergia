@@ -83,8 +83,7 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
     const step = steps[stepIndex];
     const value = formData[step.id] || '';
 
-    // Optional fields
-    if (['brand_story', 'website', 'budget'].includes(step.id)) return true;
+    if (step.optional) return true;
 
     // Mandatory fields check
     if (!value.trim()) return false;
@@ -93,6 +92,11 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
     if (step.id === 'email') {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(value);
+    }
+
+    // Phone validation: al menos 10 dígitos
+    if (step.id === 'phone') {
+      return value.replace(/\D/g, '').length >= 10;
     }
 
     return true;
@@ -118,7 +122,7 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
       fbTrackCustom('form_step', { vertical, step: nextStep, step_name: steps[nextStep]?.id ?? nextStep });
       animateTransition(nextStep);
     } else {
-      await sendForm({ ...formData, vertical });
+      await sendForm(formData, steps, vertical);
     }
   };
 

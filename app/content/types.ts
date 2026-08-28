@@ -88,10 +88,17 @@ export interface EvaluacionGratuitaContent {
 }
 
 export interface FormStep {
+  /**
+   * Identificador del campo. Para los campos de identidad usa SIEMPRE estos ids
+   * canónicos (el código los lee para el match de Meta): `name`, `email`, `phone`.
+   * Cualquier otro id es libre y se manda al correo dentro de `details`.
+   */
   id: string
   label: string
   placeholder: string
   type: string
+  /** Si es true, el step se puede dejar vacío. */
+  optional?: boolean
 }
 
 export interface ContactFormContent {

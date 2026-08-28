@@ -150,6 +150,12 @@ export const generalContent: VerticalContent = {
         type: "email",
       },
       {
+        id: "phone",
+        label: "¿A qué teléfono te contactamos?",
+        placeholder: "10 dígitos",
+        type: "tel",
+      },
+      {
         id: "brand",
         label: "¿Cómo se llama tu marca o negocio?",
         placeholder: "Nombre de tu negocio",
@@ -160,18 +166,21 @@ export const generalContent: VerticalContent = {
         label: "Cuéntanos un poco sobre tu marca",
         placeholder: "¿Qué haces y qué buscas lograr?",
         type: "textarea",
+        optional: true,
       },
       {
         id: "website",
         label: "¿Tienes website o redes sociales?",
         placeholder: "url o @usuario",
         type: "text",
+        optional: true,
       },
       {
         id: "budget",
         label: "¿Con cuanto presupuesto cuentas para este proyecto?",
         placeholder: "$10000 MXN",
         type: "text",
+        optional: true,
       },
       {
         id: "source",

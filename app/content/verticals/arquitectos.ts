@@ -141,7 +141,7 @@ export const arquitectoContent: VerticalContent = {
     successReturnHref: "/arquitecto",
     steps: [
       {
-        id: "nombre",
+        id: "name",
         label: "¿Cuál es tu nombre?",
         placeholder: "Tu nombre completo",
         type: "text"
@@ -153,7 +153,7 @@ export const arquitectoContent: VerticalContent = {
         type: "text"
       },
       {
-        id: "telefono",
+        id: "phone",
         label: "¿A qué número de WhatsApp te contactamos?",
         placeholder: "+52 123 456 7890",
         type: "tel"

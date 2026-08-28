@@ -7,9 +7,10 @@
 //
 // Uso desde componentes/hooks cliente:
 //   trackConversion('Lead', { content_name: vertical }, { email, firstName })
-import { fbTrack } from './metaPixel'
+import { fbTrack, fbSetExternalId } from './metaPixel'
 import { newEventId } from './eventId'
 import { getFbp, getFbc } from './fbCookies'
+import { getExternalId } from './externalId'
 
 export interface EventUserData {
   email?: string
@@ -30,8 +31,11 @@ export function trackConversion(
 ): string {
   const eventId = newEventId()
   const eventTime = Math.floor(Date.now() / 1000)
+  const externalId = getExternalId()
 
-  // 1) Pixel del navegador con el eventID compartido.
+  // 1) Pixel del navegador: alimenta Coincidencias Avanzadas con el external_id
+  //    y dispara el evento con el eventID compartido.
+  fbSetExternalId(externalId)
   fbTrack(eventName, customData, eventId)
 
   // 2) CAPI server-side. keepalive para que sobreviva a una navegación inmediata.
@@ -45,6 +49,7 @@ export function trackConversion(
         customData,
         userData: {
           ...userData,
+          externalId,
           fbp: getFbp(),
           fbc: getFbc(),
         },

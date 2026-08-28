@@ -34,3 +34,14 @@ export function fbTrackCustom(event: string, params?: Record<string, any>, event
     }
   }
 }
+
+// Alimenta el external_id a las Coincidencias Avanzadas del Pixel (canal navegador).
+// Re-invocar `init` con el mismo ID solo actualiza los datos de matching; no dispara
+// otro PageView. El Pixel hashea el valor en el cliente, igual que hace CAPI, así que
+// ambos canales mandan el MISMO external_id hasheado.
+export function fbSetExternalId(externalId?: string) {
+  if (!externalId || !META_PIXEL_ID) return
+  if (typeof window.fbq === 'function') {
+    window.fbq('init', META_PIXEL_ID, { external_id: externalId })
+  }
+}
