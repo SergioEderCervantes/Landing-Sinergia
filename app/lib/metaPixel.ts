@@ -13,14 +13,24 @@ export function fbPageview() {
   }
 }
 
-export function fbTrack(event: string, params?: Record<string, any>) {
+// `eventID` opcional: pásalo cuando el mismo evento también se envía por CAPI
+// para que Meta deduplique por (event_name + event_id). Ver app/lib/metaEvents.ts.
+export function fbTrack(event: string, params?: Record<string, any>, eventID?: string) {
   if (typeof window.fbq === 'function') {
-    window.fbq('track', event, params)
+    if (eventID) {
+      window.fbq('track', event, params, { eventID })
+    } else {
+      window.fbq('track', event, params)
+    }
   }
 }
 
-export function fbTrackCustom(event: string, params?: Record<string, any>) {
+export function fbTrackCustom(event: string, params?: Record<string, any>, eventID?: string) {
   if (typeof window.fbq === 'function') {
-    window.fbq('trackCustom', event, params)
+    if (eventID) {
+      window.fbq('trackCustom', event, params, { eventID })
+    } else {
+      window.fbq('trackCustom', event, params)
+    }
   }
 }

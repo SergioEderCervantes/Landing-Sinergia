@@ -9,6 +9,7 @@ import LoQueCambia from '@/app/sections/LoQueCambia'
 import ParaQuien from '@/app/sections/ParaQuien'
 import QueIncluye from '@/app/sections/QueIncluye'
 import EvaluacionGratuita from '@/app/sections/EvaluacionGratuita'
+import TrackVerticalView from '@/app/components/TrackVerticalView'
 
 export const dynamicParams = false
 
@@ -47,6 +48,7 @@ export default async function VerticalPage({
 
   return (
     <main className="font-[inter] bg-linear-to-b from-black from-10% to-background text-foreground">
+      <TrackVerticalView vertical={vertical} />
       <Hero content={content.hero} />
       <Problematica content={content.problematica} />
       <ProcessSteps content={content.sistemaSinergia} />

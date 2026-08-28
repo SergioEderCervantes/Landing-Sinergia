@@ -2,11 +2,12 @@
 'use client'
 
 import { useEffect } from 'react'
-import { fbTrack } from '@/app/lib/metaPixel'
+import { trackConversion } from '@/app/lib/metaEvents'
 
 export default function TrackVerticalView({ vertical }: { vertical: string }) {
   useEffect(() => {
-    fbTrack('ViewContent', { content_name: vertical, content_category: 'landing' })
+    // Pixel + CAPI con event_id compartido (deduplicado por Meta).
+    trackConversion('ViewContent', { content_name: vertical, content_category: 'landing' })
   }, [vertical])
 
   return null

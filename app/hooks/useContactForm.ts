@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { emailService, ContactFormData } from '../lib/email-service';
-import { fbTrack } from '../lib/metaPixel';
+import { trackConversion } from '../lib/metaEvents';
 import { gtagReportConversion } from '../lib/googleAds'
 
 
@@ -31,14 +31,16 @@ export function useContactForm() {
       await emailService.sendContactForm(data);
       setStatus('success');
 
-      fbTrack('Lead', {
-        content_name: data.vertical,
-        content_category: 'contacto',
-      });
-      // gtagReportConversion(process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_LABEL!, {
-      //   value: 1.0,
-      //   currency: 'MXN',
-      // })
+      const [firstName, ...rest] = data.name.trim().split(/\s+/);
+      trackConversion(
+        'Lead',
+        { content_name: data.vertical, content_category: 'contacto' },
+        {
+          email: data.email || undefined,
+          firstName: firstName || undefined,
+          lastName: rest.join(' ') || undefined,
+        },
+      );
 
       return true;
     } catch (err) {
