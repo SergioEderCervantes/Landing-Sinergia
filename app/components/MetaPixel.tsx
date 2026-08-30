@@ -5,16 +5,20 @@ import { useEffect } from 'react'
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { META_PIXEL_ID, fbPageview } from '@/app/lib/metaPixel'
+import { useConsent } from './ConsentProvider'
 
 export default function MetaPixel() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const { status } = useConsent()
+  const consented = status === 'accepted'
 
   useEffect(() => {
+    if (!consented) return
     fbPageview()
-  }, [pathname, searchParams])
+  }, [pathname, searchParams, consented])
 
-  if (!META_PIXEL_ID) return null
+  if (!META_PIXEL_ID || !consented) return null
 
   return (
     <>

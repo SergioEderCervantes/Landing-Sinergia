@@ -2,6 +2,7 @@ import { getVerticalContent, AVAILABLE_VERTICALS } from '@/app/content'
 import { SITE_URL } from '@/app/lib/siteUrl'
 import type { Metadata } from 'next'
 import Header from '@/app/layout/Header'
+import Footer from '@/app/components/Footer'
 import ContactForm from '@/app/components/ContactForm'
 
 export const dynamicParams = false
@@ -42,6 +43,7 @@ export default async function ContactoPage({
           <ContactForm vertical={vertical} content={content.contactForm} />
         </div>
       </div>
+      <Footer vertical={vertical} />
     </main>
   )
 }

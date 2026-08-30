@@ -11,6 +11,7 @@ import { fbTrack, fbSetExternalId } from './metaPixel'
 import { newEventId } from './eventId'
 import { getFbp, getFbc } from './fbCookies'
 import { getExternalId } from './externalId'
+import { hasMarketingConsent } from './consent'
 
 export interface EventUserData {
   email?: string
@@ -22,13 +23,18 @@ export interface EventUserData {
 /**
  * Dispara `eventName` en Pixel + CAPI con un event_id compartido.
  * El envío a CAPI es fire-and-forget: nunca lanza ni bloquea el flujo del usuario.
- * Devuelve el event_id generado (por si el llamador quiere loguearlo).
+ * Devuelve el event_id generado (por si el llamador quiere loguearlo), o `''` si
+ * el usuario no ha dado consentimiento de marketing (bloqueo duro: sin Pixel, sin
+ * CAPI, sin escribir `ssm_xid`). Un CAPI iniciado en servidor necesitaría su
+ * propia señal de consentimiento — este gate es solo cliente.
  */
 export function trackConversion(
   eventName: string,
   customData?: Record<string, unknown>,
   userData?: EventUserData,
 ): string {
+  if (!hasMarketingConsent()) return ''
+
   const eventId = newEventId()
   const eventTime = Math.floor(Date.now() / 1000)
   const externalId = getExternalId()

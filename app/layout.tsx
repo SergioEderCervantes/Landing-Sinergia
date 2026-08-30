@@ -4,6 +4,8 @@ import "./globals.css";
 import MetaPixelWrapper from "./components/MetaPixelWrapper";
 import GoogleTagWrapper from "./components/GoogleTagWrapper";
 import VisitPing from "./components/VisitPing";
+import ConsentProvider from "./components/ConsentProvider";
+import CookieBanner from "./components/CookieBanner";
 import { SITE_URL } from "./lib/siteUrl";
 
 const geistSans = Geist({
@@ -50,10 +52,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
       >
-        <MetaPixelWrapper />
-        <GoogleTagWrapper/>
-        <VisitPing />
-        {children}
+        <ConsentProvider>
+          <MetaPixelWrapper />
+          <GoogleTagWrapper/>
+          <VisitPing />
+          {children}
+          <CookieBanner />
+        </ConsentProvider>
       </body>
     </html>
   );

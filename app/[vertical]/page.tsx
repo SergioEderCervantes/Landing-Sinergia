@@ -10,6 +10,7 @@ import ParaQuien from '@/app/sections/ParaQuien'
 import QueIncluye from '@/app/sections/QueIncluye'
 import EvaluacionGratuita from '@/app/sections/EvaluacionGratuita'
 import TrackVerticalView from '@/app/components/TrackVerticalView'
+import Footer from '@/app/components/Footer'
 
 export const dynamicParams = false
 
@@ -57,6 +58,7 @@ export default async function VerticalPage({
       <ParaQuien content={content.paraQuien} />
       <QueIncluye content={content.queIncluye} />
       <EvaluacionGratuita content={content.evaluacionGratuita} />
+      <Footer vertical={vertical} />
     </main>
   )
 }

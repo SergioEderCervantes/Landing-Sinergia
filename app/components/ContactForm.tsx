@@ -250,6 +250,29 @@ export default function ContactForm({ vertical, content }: ContactFormProps) {
         <p className="text-center text-white/40 text-sm mt-8">
           {isSubmitting ? 'Procesando...' : `Paso ${currentStep + 1} de ${steps.length}`}
         </p>
+
+        {/* Consentimiento legal */}
+        <p className="text-center text-white/40 text-xs mt-4 max-w-md mx-auto leading-relaxed">
+          Al enviar este formulario aceptas nuestros{' '}
+          <a
+            href={`/${vertical}/terminos`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-white transition-colors"
+          >
+            Términos y Condiciones
+          </a>{' '}
+          y nuestro{' '}
+          <a
+            href={`/${vertical}/aviso-de-privacidad`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-white transition-colors"
+          >
+            Aviso de Privacidad
+          </a>
+          .
+        </p>
       </div>
     </div>
   );
