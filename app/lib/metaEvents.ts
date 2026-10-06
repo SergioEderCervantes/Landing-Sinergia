@@ -1,12 +1,4 @@
 // app/lib/metaEvents.ts
-// Punto único para disparar un evento de conversión por los DOS canales de Meta:
-//   1. Pixel del navegador (fbq) con un eventID
-//   2. Conversions API server-side (POST /api/track) con el MISMO eventID
-// Meta deduplica por (event_name + event_id), así que un evento disparado con
-// `trackConversion` cuenta una sola vez aunque lleguen las dos señales.
-//
-// Uso desde componentes/hooks cliente:
-//   trackConversion('Lead', { content_name: vertical }, { email, firstName })
 import { fbTrack, fbSetExternalId } from './metaPixel'
 import { newEventId } from './eventId'
 import { getFbp, getFbc } from './fbCookies'

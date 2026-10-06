@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import MetaPixelWrapper from "./components/MetaPixelWrapper";
 import GoogleTagWrapper from "./components/GoogleTagWrapper";
+import LinkedInInsightTag from "./components/LinkedInInsightTag";
 import VisitPing from "./components/VisitPing";
 import ConsentProvider from "./components/ConsentProvider";
 import CookieBanner from "./components/CookieBanner";
@@ -55,6 +56,7 @@ export default function RootLayout({
         <ConsentProvider>
           <MetaPixelWrapper />
           <GoogleTagWrapper/>
+          <LinkedInInsightTag />
           <VisitPing />
           {children}
           <CookieBanner />

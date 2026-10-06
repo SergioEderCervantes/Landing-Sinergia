@@ -96,7 +96,7 @@ export const avisoPrivacidad: LegalDocument = {
         { type: 'subheading', text: '2.2. Datos técnicos y de navegación' },
         {
           type: 'p',
-          text: 'Mediante tecnologías de seguimiento y servicios de terceros como Meta Pixel y Google Tag podrán tratarse datos técnicos y de navegación, incluyendo:',
+          text: 'Mediante tecnologías de seguimiento y servicios de terceros como Meta Pixel, Google Tag y LinkedIn Insight Tag podrán tratarse datos técnicos y de navegación, incluyendo:',
         },
         {
           type: 'list',
@@ -200,7 +200,7 @@ export const avisoPrivacidad: LegalDocument = {
           type: 'list',
           items: [
             'Medir y optimizar campañas publicitarias mediante el análisis de visitas, interacciones, conversiones, desempeño de anuncios y demás información técnica utilizada para evaluar y mejorar campañas de SINERGIA o de sus clientes.',
-            'Realizar actividades de remarketing o seguimiento publicitario mediante herramientas como Meta Pixel y Google Tag.',
+            'Realizar actividades de remarketing o seguimiento publicitario mediante herramientas como Meta Pixel, Google Tag y LinkedIn Insight Tag.',
             'Realizar nuevas campañas publicitarias, prospección comercial o finalidades comerciales distintas de aquellas necesarias para atender una solicitud o prestar un servicio contratado.',
           ],
         },
@@ -256,11 +256,11 @@ export const avisoPrivacidad: LegalDocument = {
         { type: 'subheading', text: '4.1. Cookies y tecnologías de seguimiento' },
         {
           type: 'p',
-          text: 'El sitio web de LA AGENCIA cuenta con un mecanismo de gestión de cookies mediante el cual EL USUARIO puede aceptar o rechazar el uso de cookies y tecnologías de seguimiento que no sean estrictamente necesarias para el funcionamiento del sitio. Mientras EL USUARIO no otorgue su consentimiento, o si lo rechaza, no se cargan ni ejecutan Meta Pixel ni Google Tag y no se instalan sus cookies. EL USUARIO puede cambiar su elección en cualquier momento desde el enlace "Preferencias de cookies" del pie de página, y LA AGENCIA respetará la elección conforme a la configuración y funcionalidades disponibles en el sitio web.',
+          text: 'El sitio web de LA AGENCIA cuenta con un mecanismo de gestión de cookies mediante el cual EL USUARIO puede aceptar o rechazar el uso de cookies y tecnologías de seguimiento que no sean estrictamente necesarias para el funcionamiento del sitio. Mientras EL USUARIO no otorgue su consentimiento, o si lo rechaza, no se cargan ni ejecutan Meta Pixel, Google Tag ni LinkedIn Insight Tag y no se instalan sus cookies. EL USUARIO puede cambiar su elección en cualquier momento desde el enlace "Preferencias de cookies" del pie de página, y LA AGENCIA respetará la elección conforme a la configuración y funcionalidades disponibles en el sitio web.',
         },
         {
           type: 'p',
-          text: 'El sitio web utiliza tecnologías de terceros, incluyendo Meta Pixel y Google Tag, para obtener información técnica y de navegación relacionada con la medición y optimización de publicidad. Las personas titulares también podrán utilizar las configuraciones de privacidad, publicidad y cookies disponibles en sus navegadores y en las plataformas de terceros para limitar determinados mecanismos de seguimiento.',
+          text: 'El sitio web utiliza tecnologías de terceros, incluyendo Meta Pixel, Google Tag y LinkedIn Insight Tag, para obtener información técnica y de navegación relacionada con la medición y optimización de publicidad. Las personas titulares también podrán utilizar las configuraciones de privacidad, publicidad y cookies disponibles en sus navegadores y en las plataformas de terceros para limitar determinados mecanismos de seguimiento.',
         },
         {
           type: 'p',
@@ -791,15 +791,15 @@ export const terminosCondiciones: LegalDocument = {
         },
         {
           type: 'p',
-          text: 'Asimismo, el sitio web utiliza tecnologías de terceros, incluyendo Meta Pixel y Google Tag, que pueden recopilar automáticamente información técnica relacionada con la navegación e interacción del usuario, como dirección IP, identificadores del dispositivo o navegador, cookies, páginas visitadas e interacciones realizadas dentro del sitio. Esta información es utilizada para fines de medición, análisis, optimización y seguimiento de campañas publicitarias en las plataformas correspondientes.',
+          text: 'Asimismo, el sitio web utiliza tecnologías de terceros, incluyendo Meta Pixel, Google Tag y LinkedIn Insight Tag, que pueden recopilar automáticamente información técnica relacionada con la navegación e interacción del usuario, como dirección IP, identificadores del dispositivo o navegador, cookies, páginas visitadas e interacciones realizadas dentro del sitio. Esta información es utilizada para fines de medición, análisis, optimización y seguimiento de campañas publicitarias en las plataformas correspondientes.',
         },
         {
           type: 'p',
-          text: 'La información obtenida mediante el formulario de contacto no se combina actualmente con la información recopilada mediante Meta Pixel o Google Tag, ni se envían expresamente a dichas plataformas datos como nombre, correo electrónico o número telefónico dentro de los parámetros de los eventos configurados.',
+          text: 'La información obtenida mediante el formulario de contacto no se combina actualmente con la información recopilada mediante Meta Pixel, Google Tag o LinkedIn Insight Tag, ni se envían expresamente a dichas plataformas datos como nombre, correo electrónico o número telefónico dentro de los parámetros de los eventos configurados.',
         },
         {
           type: 'p',
-          text: 'Los datos recopilados mediante Meta Pixel y Google Tag son tratados por Meta y Google, respectivamente, como proveedores terceros, de conformidad con sus propias políticas y condiciones de privacidad. LA AGENCIA utiliza la información generada por dichas herramientas únicamente para medir el desempeño de sus campañas, analizar interacciones y optimizar sus estrategias publicitarias.',
+          text: 'Los datos recopilados mediante Meta Pixel, Google Tag y LinkedIn Insight Tag son tratados por Meta, Google y LinkedIn, respectivamente, como proveedores terceros, de conformidad con sus propias políticas y condiciones de privacidad. LA AGENCIA utiliza la información generada por dichas herramientas únicamente para medir el desempeño de sus campañas, analizar interacciones y optimizar sus estrategias publicitarias.',
         },
         {
           type: 'p',
